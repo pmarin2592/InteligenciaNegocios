@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34902.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "ProyectoInteligenciaG1", "ProyectoInteligenciaG1\ProyectoInteligenciaG1.dtproj", "{6EC8AED1-A5AB-483D-9FA8-09C3A0E73A2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EC8AED1-A5AB-483D-9FA8-09C3A0E73A2B}.Development|Default.ActiveCfg = Development
+		{6EC8AED1-A5AB-483D-9FA8-09C3A0E73A2B}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0609B545-E8ED-4038-9FED-EC013A57084A}
+	EndGlobalSection
+EndGlobal
