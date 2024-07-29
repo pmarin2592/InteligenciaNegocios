@@ -26,26 +26,152 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WMINTNEGOCIO</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA65/P5e3CJEmdEDjp5m/7aAAAAAACAAAAAAAQZgAAAAEAACAAAAAFZZNvA6aHNybC9/Fn9cWZjxZZCUkGXxhXMnV4u/AOzQAAAAAOgAAAAAIAACAAAADGVYd9u2Xec6gbvS1AyAC9nQr6vlJPfyFK5yvLPLi5+pAAAACHuRnuCPCzByOv7g7Hb1hB23Jst8QCb037sB8NQXGSMSBY1VoErGNQiTJK0BaOIl8wfH09BiEQAzgI+rvRWriRNrsEwtwjVFyQUhkHWN22qGakhMSL45urIWrbNwwOwQTJU8NRC84wrnAFW4BmCi43lkNuxYX+xBoFqwpovo1oGpU+5+QmZmA7VvueBOw9zdBAAAAAjRR8XbAUdBZa/bTIY1yABNZVukm5d8s46T2/YZGoFwqbTlZ5LWmaCebNjp3q7JBoQctoj6fpT32Wi9/KbmPElw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA65/P5e3CJEmdEDjp5m/7aAAAAAACAAAAAAAQZgAAAAEAACAAAAB6k2CRBJ+Rd1ZARhVXKT9917Hrwke2EVC7eGqGHMNA0gAAAAAOgAAAAAIAACAAAAAL8PjuawtA0iPgrzFzEXdTK2J6RASceGaks4N0v6x3FpAAAAClhKL3CNhlGY2zp8Wi+LLOTpBGZ48s2NAwLhi68KV8QJmAreBDw98XINI0lXX9681Ptx27vVF00xdBiZJF7nyGYWQwnMneKJDRpjwIKfCs9DvZ0tD5ttmVbtAv6IDY+Y5RjcQgvR7nAiJWFpuRRs8ZR1bhitbyHptUAq2FJnN/Q/UIZdz8eJ6DdvorE4nFA2NAAAAAlwZZSA851ktzBZf6AuMG1kH52JD8TmnsC+TIXnck7bj1D397DmSw3mxuiQL0pMSio3Gkptw6HQCYey4EQlz3Nw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="loadVendedor.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="loadCliente.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="loadProducto.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="loadVenta.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="loadSucursal.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="loadComuna.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="loadFecha.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="loadFacVentas.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters />
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Package.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="loadVendedor.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{AFA0FA89-E677-42FF-B077-30766EB69DAB}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{89DBA824-05CC-4F5C-ACF9-EB46153C00ED}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">loadVendedor</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{5D81BB32-7638-480D-8AD0-0D4419F91341}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="loadCliente.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{2723AD80-47A2-4489-AF16-3816CBB8914A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{498D1236-F7D2-46C0-80E5-E760EC4ABB36}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{29F73A7E-C276-4965-A0FD-D3E273314877}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="loadProducto.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{D567A770-CCEE-4A0F-8454-BD4D3B52AE3A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A38CB3FF-B460-4564-858B-6530CB6E0209}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="loadVenta.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{52751BC4-3549-4885-BCC1-EFA831456209}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D4FED783-72F8-460E-B8F0-F65679242103}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="loadSucursal.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{89DE7CE3-F37E-477E-8FD9-E025DB276D58}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">loadSucursal</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{DB694FD1-01EF-4BA5-A8D3-DB7AA3E4514B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="loadComuna.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{30871765-2213-41C5-B4BE-87F36560F4B3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">loadComuna</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{8BC72486-DEBE-4CF7-BED3-8DE7C3EF9474}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="loadFecha.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{C171C229-3C2F-45BE-A8E4-B9382C0D5122}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">loadFecha</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EF4CE5ED-1D15-4595-85AA-FC0C8B6E0719}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="loadFacVentas.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{D08992D2-3E61-47DD-9226-0AB96BA2134D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">loadFacVentas</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{FEB92D2C-4866-4E02-B028-8C725974C255}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
