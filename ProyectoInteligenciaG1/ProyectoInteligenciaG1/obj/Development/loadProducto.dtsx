@@ -1,18 +1,18 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="7/28/2024 7:48:26 PM"
+  DTS:CreationDate="7/28/2024 7:47:56 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WMINTNEGOCIO"
   DTS:CreatorName="WMINTNEGOCIO\Administrator"
-  DTS:DTSID="{52751BC4-3549-4885-BCC1-EFA831456209}"
+  DTS:DTSID="{D567A770-CCEE-4A0F-8454-BD4D3B52AE3A}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5556.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{31B6174E-AAE6-434E-BE84-6DF2464EB311}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{F8193834-8BCC-4112-B87F-DCFD1172199B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -21,7 +21,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{029EC9B2-B80C-4C7F-9C05-99A22B5F3895}"
+      DTS:DTSID="{8CB5AFC1-E629-4E74-8BC1-985370D1E47B}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task"
@@ -45,7 +45,7 @@
                   description="The Destination database table name."
                   expressionType="Notify"
                   name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_VENTA"</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_PRODUCTO"</property>
                 <property
                   dataType="System.Int32"
                   description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
@@ -81,43 +81,65 @@
                   name="ADO NET Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[BD_DOCUMENTO]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="BD_DOCUMENTO"
-                      cachedSortKeyPosition="1"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ID_DOCUMENTO]"
-                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_DOCUMENTO]" />
-                    <inputColumn
                       refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[BD_CODIGO_PRODUCTO]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="BD_CODIGO_PRODUCTO"
+                      cachedSortKeyPosition="1"
                       externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CODIGO_PRODUCTO]"
                       lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CODIGO_PRODUCTO]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[BD_CANTIDAD]"
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[BD_NOMBRE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BD_NOMBRE"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[NOMBRE]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_NOMBRE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[BD_CATEGORIA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BD_CATEGORIA"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CATEGORIA]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CATEGORIA]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[BD_PRECIO_UNITARIO]"
                       cachedDataType="i4"
-                      cachedName="BD_CANTIDAD"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CANTIDAD]"
-                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CANTIDAD]" />
+                      cachedName="BD_PRECIO_UNITARIO"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[PRECIO_UNITARIO]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_PRECIO_UNITARIO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[BD_COSTO_UNITARIO]"
+                      cachedDataType="i4"
+                      cachedName="BD_COSTO_UNITARIO"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[COSTO_UNITARIO]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_COSTO_UNITARIO]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ID_DOCUMENTO]"
-                      dataType="wstr"
-                      length="255"
-                      name="ID_DOCUMENTO" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CODIGO_PRODUCTO]"
                       dataType="wstr"
                       length="255"
                       name="CODIGO_PRODUCTO" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CANTIDAD]"
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOMBRE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      name="CATEGORIA" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[PRECIO_UNITARIO]"
                       dataType="i4"
-                      name="CANTIDAD" />
+                      name="PRECIO_UNITARIO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[COSTO_UNITARIO]"
+                      dataType="i4"
+                      name="COSTO_UNITARIO" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -174,7 +196,7 @@
                   description="The Source database table name."
                   expressionType="Notify"
                   name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DETALLE_VENTA"</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."ARTICULOS"</property>
                 <property
                   dataType="System.Int32"
                   description="Specify the mode to retrieve external column information"
@@ -198,16 +220,6 @@
                   name="ADO NET Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DOCUMENTO]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DOCUMENTO]"
-                      length="255"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DOCUMENTO]"
-                      name="DOCUMENTO"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CODIGO_PRODUCTO]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -216,6 +228,26 @@
                       length="255"
                       lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CODIGO_PRODUCTO]"
                       name="CODIGO_PRODUCTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[NOMBRE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[NOMBRE]"
+                      name="NOMBRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CATEGORIA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CATEGORIA]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CATEGORIA]"
+                      name="CATEGORIA"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[PRECIO_UNITARIO]"
@@ -227,48 +259,40 @@
                       name="PRECIO_UNITARIO"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CANTIDAD]"
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[COSTO_UNITARIO]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CANTIDAD]"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CANTIDAD]"
-                      name="CANTIDAD"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[TOTAL]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[TOTAL]"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[TOTAL]"
-                      name="TOTAL"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[COSTO_UNITARIO]"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[COSTO_UNITARIO]"
+                      name="COSTO_UNITARIO"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[DOCUMENTO]"
-                      dataType="wstr"
-                      length="255"
-                      name="DOCUMENTO" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CODIGO_PRODUCTO]"
                       dataType="wstr"
                       length="255"
                       name="CODIGO_PRODUCTO" />
                     <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOMBRE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      name="CATEGORIA" />
+                    <externalMetadataColumn
                       refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[PRECIO_UNITARIO]"
                       dataType="i4"
                       name="PRECIO_UNITARIO" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CANTIDAD]"
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[COSTO_UNITARIO]"
                       dataType="i4"
-                      name="CANTIDAD" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[TOTAL]"
-                      dataType="i4"
-                      name="TOTAL" />
+                      name="COSTO_UNITARIO" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -277,32 +301,33 @@
                   name="ADO NET Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DOCUMENTO]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[DOCUMENTO]"
-                      name="DOCUMENTO" />
-                    <outputColumn
                       refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CODIGO_PRODUCTO]"
                       dataType="wstr"
                       length="255"
                       lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CODIGO_PRODUCTO]"
                       name="CODIGO_PRODUCTO" />
                     <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NOMBRE]"
+                      name="NOMBRE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CATEGORIA]"
+                      name="CATEGORIA" />
+                    <outputColumn
                       refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PRECIO_UNITARIO]"
                       dataType="i4"
                       lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[PRECIO_UNITARIO]"
                       name="PRECIO_UNITARIO" />
                     <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CANTIDAD]"
+                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[COSTO_UNITARIO]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CANTIDAD]"
-                      name="CANTIDAD" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[TOTAL]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[TOTAL]"
-                      name="TOTAL" />
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[COSTO_UNITARIO]"
+                      name="COSTO_UNITARIO" />
                     <outputColumn
                       refId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -348,7 +373,7 @@
                   description="The Source database table name."
                   expressionType="Notify"
                   name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_VENTA"</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_PRODUCTO"</property>
                 <property
                   dataType="System.Int32"
                   description="Specify the mode to retrieve external column information"
@@ -372,16 +397,6 @@
                   name="ADO NET Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[ID_DOCUMENTO]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[ID_DOCUMENTO]"
-                      length="255"
-                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[ID_DOCUMENTO]"
-                      name="ID_DOCUMENTO"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[CODIGO_PRODUCTO]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -392,31 +407,69 @@
                       name="CODIGO_PRODUCTO"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[CANTIDAD]"
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[NOMBRE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[NOMBRE]"
+                      name="NOMBRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[CATEGORIA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[CATEGORIA]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[CATEGORIA]"
+                      name="CATEGORIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[PRECIO_UNITARIO]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[CANTIDAD]"
-                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[CANTIDAD]"
-                      name="CANTIDAD"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[PRECIO_UNITARIO]"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[PRECIO_UNITARIO]"
+                      name="PRECIO_UNITARIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[COSTO_UNITARIO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[COSTO_UNITARIO]"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[COSTO_UNITARIO]"
+                      name="COSTO_UNITARIO"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[ID_DOCUMENTO]"
-                      dataType="wstr"
-                      length="255"
-                      name="ID_DOCUMENTO" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[CODIGO_PRODUCTO]"
                       dataType="wstr"
                       length="255"
                       name="CODIGO_PRODUCTO" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[CANTIDAD]"
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOMBRE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      name="CATEGORIA" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[PRECIO_UNITARIO]"
                       dataType="i4"
-                      name="CANTIDAD" />
+                      name="PRECIO_UNITARIO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].ExternalColumns[COSTO_UNITARIO]"
+                      dataType="i4"
+                      name="COSTO_UNITARIO" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -425,22 +478,33 @@
                   name="ADO NET Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[ID_DOCUMENTO]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[ID_DOCUMENTO]"
-                      name="ID_DOCUMENTO" />
-                    <outputColumn
                       refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[CODIGO_PRODUCTO]"
                       dataType="wstr"
                       length="255"
                       lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[CODIGO_PRODUCTO]"
                       name="CODIGO_PRODUCTO" />
                     <outputColumn
-                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[CANTIDAD]"
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[NOMBRE]"
+                      name="NOMBRE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[CATEGORIA]"
+                      name="CATEGORIA" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[PRECIO_UNITARIO]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[CANTIDAD]"
-                      name="CANTIDAD" />
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[PRECIO_UNITARIO]"
+                      name="PRECIO_UNITARIO" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[COSTO_UNITARIO]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[COSTO_UNITARIO]"
+                      name="COSTO_UNITARIO" />
                     <outputColumn
                       refId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -472,23 +536,23 @@
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[DW_ID_DOCUMENTO]"
+                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[DW_CODIGO_PRODUCTO]"
                       cachedDataType="wstr"
                       cachedLength="255"
-                      cachedName="DW_ID_DOCUMENTO"
-                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_ID_DOCUMENTO]" />
+                      cachedName="DW_CODIGO_PRODUCTO"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_CODIGO_PRODUCTO]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Conditional Split.Outputs[valida]"
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[validar]"
                   description="Output 1 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
-                  name="valida"
+                  name="validar"
                   synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
                   truncationRowDisposition="FailComponent">
                   <properties>
@@ -496,13 +560,13 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[ISNULL](#{Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_ID_DOCUMENTO]})</property>
+                      name="Expression">[ISNULL](#{Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_CODIGO_PRODUCTO]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">ISNULL(DW_ID_DOCUMENTO)</property>
+                      name="FriendlyExpression">ISNULL(DW_CODIGO_PRODUCTO)</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -581,33 +645,34 @@
                   name="Merge Join Left Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[DOCUMENTO]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="DOCUMENTO"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[DOCUMENTO]" />
-                    <inputColumn
                       refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CODIGO_PRODUCTO]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="CODIGO_PRODUCTO"
+                      cachedSortKeyPosition="1"
                       lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[NOMBRE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOMBRE"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[NOMBRE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CATEGORIA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CATEGORIA"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CATEGORIA]" />
                     <inputColumn
                       refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[PRECIO_UNITARIO]"
                       cachedDataType="i4"
                       cachedName="PRECIO_UNITARIO"
                       lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[PRECIO_UNITARIO]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CANTIDAD]"
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[COSTO_UNITARIO]"
                       cachedDataType="i4"
-                      cachedName="CANTIDAD"
-                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CANTIDAD]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[TOTAL]"
-                      cachedDataType="i4"
-                      cachedName="TOTAL"
-                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[TOTAL]" />
+                      cachedName="COSTO_UNITARIO"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[COSTO_UNITARIO]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -617,23 +682,34 @@
                   name="Merge Join Right Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[ID_DOCUMENTO]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="ID_DOCUMENTO"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[ID_DOCUMENTO]" />
-                    <inputColumn
                       refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[CODIGO_PRODUCTO]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="CODIGO_PRODUCTO"
+                      cachedSortKeyPosition="1"
                       lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[CANTIDAD]"
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[NOMBRE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOMBRE"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[NOMBRE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[CATEGORIA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CATEGORIA"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[CATEGORIA]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[PRECIO_UNITARIO]"
                       cachedDataType="i4"
-                      cachedName="CANTIDAD"
-                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[CANTIDAD]" />
+                      cachedName="PRECIO_UNITARIO"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[PRECIO_UNITARIO]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[COSTO_UNITARIO]"
+                      cachedDataType="i4"
+                      cachedName="COSTO_UNITARIO"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[COSTO_UNITARIO]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -645,32 +721,46 @@
                   name="Merge Join Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_DOCUMENTO]"
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CODIGO_PRODUCTO]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_DOCUMENTO]"
-                      name="BD_DOCUMENTO"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CODIGO_PRODUCTO]"
+                      name="BD_CODIGO_PRODUCTO"
                       sortKeyPosition="1">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[DOCUMENTO]}</property>
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CODIGO_PRODUCTO]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CODIGO_PRODUCTO]"
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_NOMBRE]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CODIGO_PRODUCTO]"
-                      name="BD_CODIGO_PRODUCTO">
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_NOMBRE]"
+                      name="BD_NOMBRE">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CODIGO_PRODUCTO]}</property>
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[NOMBRE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CATEGORIA]"
+                      name="BD_CATEGORIA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CATEGORIA]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -687,43 +777,16 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CANTIDAD]"
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_COSTO_UNITARIO]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_CANTIDAD]"
-                      name="BD_CANTIDAD">
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_COSTO_UNITARIO]"
+                      name="BD_COSTO_UNITARIO">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CANTIDAD]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_TOTAL]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[BD_TOTAL]"
-                      name="BD_TOTAL">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[TOTAL]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_ID_DOCUMENTO]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_ID_DOCUMENTO]"
-                      name="DW_ID_DOCUMENTO">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[ID_DOCUMENTO]}</property>
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[COSTO_UNITARIO]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -741,16 +804,57 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_CANTIDAD]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_CANTIDAD]"
-                      name="DW_CANTIDAD">
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_NOMBRE]"
+                      name="DW_NOMBRE">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[CANTIDAD]}</property>
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[NOMBRE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_CATEGORIA]"
+                      name="DW_CATEGORIA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[CATEGORIA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_PRECIO_UNITARIO]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_PRECIO_UNITARIO]"
+                      name="DW_PRECIO_UNITARIO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[PRECIO_UNITARIO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_COSTO_UNITARIO]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DW_COSTO_UNITARIO]"
+                      name="DW_COSTO_UNITARIO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[COSTO_UNITARIO]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -782,11 +886,11 @@
                   name="Sort Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[DOCUMENTO]"
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[CODIGO_PRODUCTO]"
                       cachedDataType="wstr"
                       cachedLength="255"
-                      cachedName="DOCUMENTO"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DOCUMENTO]">
+                      cachedName="CODIGO_PRODUCTO"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CODIGO_PRODUCTO]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -799,11 +903,28 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[CODIGO_PRODUCTO]"
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[NOMBRE]"
                       cachedDataType="wstr"
                       cachedLength="255"
-                      cachedName="CODIGO_PRODUCTO"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CODIGO_PRODUCTO]">
+                      cachedName="NOMBRE"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[NOMBRE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[CATEGORIA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CATEGORIA"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CATEGORIA]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -832,26 +953,10 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[CANTIDAD]"
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[COSTO_UNITARIO]"
                       cachedDataType="i4"
-                      cachedName="CANTIDAD"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CANTIDAD]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[TOTAL]"
-                      cachedDataType="i4"
-                      cachedName="TOTAL"
-                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[TOTAL]">
+                      cachedName="COSTO_UNITARIO"
+                      lineageId="Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[COSTO_UNITARIO]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -874,32 +979,46 @@
                   name="Sort Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[DOCUMENTO]"
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[DOCUMENTO]"
-                      name="DOCUMENTO"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]"
+                      name="CODIGO_PRODUCTO"
                       sortKeyPosition="1">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[DOCUMENTO]}</property>
+                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CODIGO_PRODUCTO]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]"
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[NOMBRE]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]"
-                      name="CODIGO_PRODUCTO">
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[NOMBRE]"
+                      name="NOMBRE">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CODIGO_PRODUCTO]}</property>
+                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[NOMBRE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CATEGORIA]"
+                      name="CATEGORIA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CATEGORIA]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -916,29 +1035,16 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CANTIDAD]"
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[COSTO_UNITARIO]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CANTIDAD]"
-                      name="CANTIDAD">
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[COSTO_UNITARIO]"
+                      name="COSTO_UNITARIO">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[CANTIDAD]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[TOTAL]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[TOTAL]"
-                      name="TOTAL">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[TOTAL]}</property>
+                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source.Outputs[ADO NET Source Output].Columns[COSTO_UNITARIO]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -970,23 +1076,6 @@
                   name="Sort Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[ID_DOCUMENTO]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="ID_DOCUMENTO"
-                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[ID_DOCUMENTO]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">1</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[CODIGO_PRODUCTO]"
                       cachedDataType="wstr"
                       cachedLength="255"
@@ -1000,14 +1089,64 @@
                         <property
                           dataType="System.Int32"
                           description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[NOMBRE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOMBRE"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[NOMBRE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
                           name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[CANTIDAD]"
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[CATEGORIA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CATEGORIA"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[CATEGORIA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[PRECIO_UNITARIO]"
                       cachedDataType="i4"
-                      cachedName="CANTIDAD"
-                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[CANTIDAD]">
+                      cachedName="PRECIO_UNITARIO"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[PRECIO_UNITARIO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[COSTO_UNITARIO]"
+                      cachedDataType="i4"
+                      cachedName="COSTO_UNITARIO"
+                      lineageId="Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[COSTO_UNITARIO]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -1030,26 +1169,12 @@
                   name="Sort Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[ID_DOCUMENTO]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[ID_DOCUMENTO]"
-                      name="ID_DOCUMENTO"
-                      sortKeyPosition="1">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[ID_DOCUMENTO]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]"
                       dataType="wstr"
                       length="255"
                       lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]"
-                      name="CODIGO_PRODUCTO">
+                      name="CODIGO_PRODUCTO"
+                      sortKeyPosition="1">
                       <properties>
                         <property
                           containsID="true"
@@ -1059,16 +1184,57 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[CANTIDAD]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[CANTIDAD]"
-                      name="CANTIDAD">
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[NOMBRE]"
+                      name="NOMBRE">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[CANTIDAD]}</property>
+                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[NOMBRE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[CATEGORIA]"
+                      name="CATEGORIA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[CATEGORIA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[PRECIO_UNITARIO]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[PRECIO_UNITARIO]"
+                      name="PRECIO_UNITARIO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[PRECIO_UNITARIO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[COSTO_UNITARIO]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[COSTO_UNITARIO]"
+                      name="COSTO_UNITARIO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\ADO NET Source 1.Outputs[ADO NET Source Output].Columns[COSTO_UNITARIO]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1104,10 +1270,10 @@
               name="Sort Output"
               startId="Package\Data Flow Task\Sort 1.Outputs[Sort Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[valida]"
+              refId="Package\Data Flow Task.Paths[validar]"
               endId="Package\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
-              name="valida"
-              startId="Package\Data Flow Task\Conditional Split.Outputs[valida]" />
+              name="validar"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[validar]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1128,7 +1294,7 @@
         <NodeLayout
           Size="151,42"
           Id="Package\Data Flow Task"
-          TopLeft="169,106" />
+          TopLeft="184,111" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1140,41 +1306,45 @@
         <NodeLayout
           Size="158,42"
           Id="Package\Data Flow Task\ADO NET Source"
-          TopLeft="185,123" />
+          TopLeft="163,66" />
         <NodeLayout
           Size="167,42"
           Id="Package\Data Flow Task\ADO NET Source 1"
-          TopLeft="531,140" />
+          TopLeft="461,59" />
         <NodeLayout
           Size="98,42"
           Id="Package\Data Flow Task\Sort"
-          TopLeft="214,234" />
+          TopLeft="202,153" />
         <NodeLayout
           Size="107,42"
           Id="Package\Data Flow Task\Sort 1"
-          TopLeft="593,254" />
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Data Flow Task\Conditional Split"
-          TopLeft="380.227272727273,462.272727272727" />
-        <NodeLayout
-          Size="179,42"
-          Id="Package\Data Flow Task\ADO NET Destination"
-          TopLeft="328.068181818182,579.886363636364" />
+          TopLeft="523,165" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[ADO NET Source Output]"
-          TopLeft="263.5,165">
+          TopLeft="242,108">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,69"
+              EndConnector="9,45"
               Start="0,0"
-              End="0,61.5">
+              End="9,37.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,61.5" />
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="4,22.5" />
+                  <mssgle:LineSegment
+                    End="5,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,22.5"
+                    Point2="9,22.5"
+                    Point3="9,26.5" />
+                  <mssgle:LineSegment
+                    End="9,37.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1185,30 +1355,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[ADO NET Source Output1]"
-          TopLeft="614.5,182">
+          TopLeft="544.5,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="32,72"
+              EndConnector="32,64"
               Start="0,0"
-              End="32,64.5">
+              End="32,56.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32" />
+                    End="0,28" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,32"
-                    Point2="0,36"
-                    Point3="4,36" />
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="4,32" />
                   <mssgle:LineSegment
-                    End="28,36" />
+                    End="28,32" />
                   <mssgle:CubicBezierSegment
-                    Point1="28,36"
-                    Point2="32,36"
-                    Point3="32,40" />
+                    Point1="28,32"
+                    Point2="32,32"
+                    Point3="32,36" />
                   <mssgle:LineSegment
-                    End="32,64.5" />
+                    End="32,56.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1220,33 +1390,33 @@
         <NodeLayout
           Size="130,42"
           Id="Package\Data Flow Task\Merge Join"
-          TopLeft="436.363636363636,373.636363636364" />
+          TopLeft="396,281" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Sort Output]"
-          TopLeft="263,276">
+          TopLeft="251,195">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="238.363636363636,97.6363636363636"
+              EndConnector="210,86"
               Start="0,0"
-              End="238.363636363636,90.1363636363636">
+              End="210,78.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.8181818181818" />
+                    End="0,39" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,44.8181818181818"
-                    Point2="0,48.8181818181818"
-                    Point3="4,48.8181818181818" />
+                    Point1="0,39"
+                    Point2="0,43"
+                    Point3="4,43" />
                   <mssgle:LineSegment
-                    End="234.363636363636,48.8181818181818" />
+                    End="206,43" />
                   <mssgle:CubicBezierSegment
-                    Point1="234.363636363636,48.8181818181818"
-                    Point2="238.363636363636,48.8181818181818"
-                    Point3="238.363636363636,52.8181818181818" />
+                    Point1="206,43"
+                    Point2="210,43"
+                    Point3="210,47" />
                   <mssgle:LineSegment
-                    End="238.363636363636,90.1363636363636" />
+                    End="210,78.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1257,30 +1427,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Sort Output1]"
-          TopLeft="646.5,296">
+          TopLeft="576.5,207">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-124.80303030303,77.6363636363636"
+              EndConnector="-95.1666666666667,74"
               Start="0,0"
-              End="-124.80303030303,70.1363636363636">
+              End="-95.1666666666667,66.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,42.0154738878143" />
+                    End="0,39.8601823708207" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,42.0154738878143"
-                    Point2="0,46.0154738878143"
-                    Point3="-4,46.0154738878143" />
+                    Point1="0,39.8601823708207"
+                    Point2="0,43.8601823708207"
+                    Point3="-4,43.8601823708207" />
                   <mssgle:LineSegment
-                    End="-120.80303030303,46.0154738878143" />
+                    End="-91.1666666666667,43.8601823708207" />
                   <mssgle:CubicBezierSegment
-                    Point1="-120.80303030303,46.0154738878143"
-                    Point2="-124.80303030303,46.0154738878143"
-                    Point3="-124.80303030303,50.0154738878143" />
+                    Point1="-91.1666666666667,43.8601823708207"
+                    Point2="-95.1666666666667,43.8601823708207"
+                    Point3="-95.1666666666667,47.8601823708207" />
                   <mssgle:LineSegment
-                    End="-124.80303030303,70.1363636363636" />
+                    End="-95.1666666666667,66.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1289,32 +1459,36 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task\Conditional Split"
+          TopLeft="403,363" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Merge Join Output]"
-          TopLeft="501.363636363636,415.636363636364">
+          TopLeft="461,323">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-43.6363636363637,46.6363636363636"
+              EndConnector="19.5,40"
               Start="0,0"
-              End="-43.6363636363637,39.1363636363636">
+              End="19.5,32.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.3181818181818" />
+                    End="0,16" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.3181818181818"
-                    Point2="0,23.3181818181818"
-                    Point3="-4,23.3181818181818" />
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
                   <mssgle:LineSegment
-                    End="-39.6363636363637,23.3181818181818" />
+                    End="15.5,20" />
                   <mssgle:CubicBezierSegment
-                    Point1="-39.6363636363637,23.3181818181818"
-                    Point2="-43.6363636363637,23.3181818181818"
-                    Point3="-43.6363636363637,27.3181818181818" />
+                    Point1="15.5,20"
+                    Point2="19.5,20"
+                    Point3="19.5,24" />
                   <mssgle:LineSegment
-                    End="-43.6363636363637,39.1363636363636" />
+                    End="19.5,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1323,39 +1497,31 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Data Flow Task\ADO NET Destination"
+          TopLeft="384,433" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[valida]"
-          TopLeft="457.727272727273,504.272727272727">
+          Id="Package\Data Flow Task.Paths[validar]"
+          TopLeft="477,405">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-40.1590909090908,75.6136363636364"
+              EndConnector="0,28"
               Start="0,0"
-              End="-40.1590909090908,68.1136363636364">
+              End="0,20.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.8068181818182" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,33.8068181818182"
-                    Point2="0,37.8068181818182"
-                    Point3="-4,37.8068181818182" />
-                  <mssgle:LineSegment
-                    End="-36.1590909090908,37.8068181818182" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-36.1590909090908,37.8068181818182"
-                    Point2="-40.1590909090908,37.8068181818182"
-                    Point3="-40.1590909090908,41.8068181818182" />
-                  <mssgle:LineSegment
-                    End="-40.1590909090908,68.1136363636364" />
+                    End="0,20.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-33.5469087357954,42.8068181818182,26.9347265625,9.7490234375"
+              BoundingBox="-15.5576953125,5.37548828125,31.115390625,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
