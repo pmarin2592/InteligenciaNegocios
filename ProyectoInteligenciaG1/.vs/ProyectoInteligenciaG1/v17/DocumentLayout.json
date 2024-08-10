@@ -1,0 +1,52 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ale23\\OneDrive\\Escritorio\\git\\InteligenciaNegocios\\ProyectoInteligenciaG1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC8AED1-A5AB-483D-9FA8-09C3A0E73A2B}|ProyectoInteligenciaG1\\ProyectoInteligenciaG1.dtproj|C:\\Users\\ale23\\OneDrive\\Escritorio\\git\\InteligenciaNegocios\\ProyectoInteligenciaG1\\ProyectoInteligenciaG1\\loadVenta.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{6EC8AED1-A5AB-483D-9FA8-09C3A0E73A2B}|ProyectoInteligenciaG1\\ProyectoInteligenciaG1.dtproj|solutionrelative:ProyectoInteligenciaG1\\loadVenta.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC8AED1-A5AB-483D-9FA8-09C3A0E73A2B}|ProyectoInteligenciaG1\\ProyectoInteligenciaG1.dtproj|C:\\Users\\ale23\\OneDrive\\Escritorio\\git\\InteligenciaNegocios\\ProyectoInteligenciaG1\\ProyectoInteligenciaG1\\loadProducto.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{6EC8AED1-A5AB-483D-9FA8-09C3A0E73A2B}|ProyectoInteligenciaG1\\ProyectoInteligenciaG1.dtproj|solutionrelative:ProyectoInteligenciaG1\\loadProducto.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "loadVenta.dtsx [Design]",
+              "DocumentMoniker": "C:\\Users\\ale23\\OneDrive\\Escritorio\\git\\InteligenciaNegocios\\ProyectoInteligenciaG1\\ProyectoInteligenciaG1\\loadVenta.dtsx",
+              "RelativeDocumentMoniker": "ProyectoInteligenciaG1\\loadVenta.dtsx",
+              "ToolTip": "C:\\Users\\ale23\\OneDrive\\Escritorio\\git\\InteligenciaNegocios\\ProyectoInteligenciaG1\\ProyectoInteligenciaG1\\loadVenta.dtsx [Design]",
+              "RelativeToolTip": "ProyectoInteligenciaG1\\loadVenta.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2024-08-02T15:44:48.36Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "loadProducto.dtsx [Design]",
+              "DocumentMoniker": "C:\\Users\\ale23\\OneDrive\\Escritorio\\git\\InteligenciaNegocios\\ProyectoInteligenciaG1\\ProyectoInteligenciaG1\\loadProducto.dtsx",
+              "RelativeDocumentMoniker": "ProyectoInteligenciaG1\\loadProducto.dtsx",
+              "ToolTip": "C:\\Users\\ale23\\OneDrive\\Escritorio\\git\\InteligenciaNegocios\\ProyectoInteligenciaG1\\ProyectoInteligenciaG1\\loadProducto.dtsx [Design]",
+              "RelativeToolTip": "ProyectoInteligenciaG1\\loadProducto.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2024-08-02T15:19:31.246Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
