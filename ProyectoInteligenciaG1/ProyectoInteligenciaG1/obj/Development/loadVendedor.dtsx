@@ -7,7 +7,7 @@
   DTS:CreatorName="WMINTNEGOCIO\Administrator"
   DTS:DTSID="{89DBA824-05CC-4F5C-ACF9-EB46153C00ED}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="loadVendedor"
   DTS:PackageType="5"

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA"
+  DTS:DTSID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=WMINTNEGOCIO\INTNEGOCIO;Initial Catalog=DW_ULATINA;Integrated Security=True;Application Name=SSIS-ProyectoInteligenciaG1-{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}WMINTNEGOCIO\INTNEGOCIO.DW_ULATINA;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

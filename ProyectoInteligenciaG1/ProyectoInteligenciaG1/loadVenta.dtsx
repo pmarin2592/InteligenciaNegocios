@@ -7,12 +7,12 @@
   DTS:CreatorName="WMINTNEGOCIO\Administrator"
   DTS:DTSID="{52751BC4-3549-4885-BCC1-EFA831456209}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{BC8B3675-71FC-467D-B052-312CD756D7E2}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{36D3A287-4F5E-4252-A80E-FA46F7D1AD3A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -158,8 +158,8 @@
               <connections>
                 <connection
                   refId="Package\carga_dim_ventas\dim_ventas.Connections[IDbConnection]"
-                  connectionManagerID="{8925D510-AC7B-452D-A7CE-56238CA4B904}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-Q9A7UFH.DW_ULATINA]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -487,8 +487,8 @@
               <connections>
                 <connection
                   refId="Package\carga_dim_ventas\origen_detalle_ventas.Connections[IDbConnection]"
-                  connectionManagerID="{BB7BC9D1-B7B7-4C8B-A617-515DDCDCB3D0}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-Q9A7UFH.SamarImportadora]"
+                  connectionManagerID="{3EF6D189-090D-4858-93EC-56D559017E9D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.SamarImportadora]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -661,8 +661,8 @@
               <connections>
                 <connection
                   refId="Package\carga_dim_ventas\origen_ventas.Connections[IDbConnection]"
-                  connectionManagerID="{8925D510-AC7B-452D-A7CE-56238CA4B904}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-Q9A7UFH.DW_ULATINA]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1138,26 +1138,6 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="155,42"
-          Id="Package\carga_dim_ventas\Conditional Split"
-          TopLeft="380.227272727273,462.272727272727" />
-        <NodeLayout
-          Size="145,42"
-          Id="Package\carga_dim_ventas\origen_ventas"
-          TopLeft="531,140" />
-        <NodeLayout
-          Size="130,42"
-          Id="Package\carga_dim_ventas\Merge Join"
-          TopLeft="436.363636363636,373.636363636364" />
-        <NodeLayout
-          Size="206,42"
-          Id="Package\carga_dim_ventas\sort_origen_detalle_ventas"
-          TopLeft="214,234" />
-        <NodeLayout
-          Size="169,42"
-          Id="Package\carga_dim_ventas\sort_origen_ventas"
-          TopLeft="593,254" />
-        <NodeLayout
           Size="133,42"
           Id="Package\carga_dim_ventas\dim_ventas"
           TopLeft="328.068181818182,579.886363636364" />
@@ -1165,6 +1145,26 @@
           Size="182,42"
           Id="Package\carga_dim_ventas\origen_detalle_ventas"
           TopLeft="185,123" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\carga_dim_ventas\Merge Join"
+          TopLeft="436.363636363636,373.636363636364" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\carga_dim_ventas\sort_origen_ventas"
+          TopLeft="593,254" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\carga_dim_ventas\origen_ventas"
+          TopLeft="531,140" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\carga_dim_ventas\sort_origen_detalle_ventas"
+          TopLeft="214,234" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\carga_dim_ventas\Conditional Split"
+          TopLeft="380.227272727273,462.272727272727" />
         <EdgeLayout
           Id="Package\carga_dim_ventas.Paths[valida]"
           TopLeft="457.727272727273,504.272727272727">
@@ -1375,14 +1375,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\carga_dim_ventas\origen_ventas">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\carga_dim_ventas\dim_ventas">
     <Properties>
       <Property>
@@ -1392,6 +1384,14 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\carga_dim_ventas\origen_detalle_ventas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\carga_dim_ventas\origen_ventas">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

@@ -7,16 +7,1421 @@
   DTS:CreatorName="WMINTNEGOCIO\Administrator"
   DTS:DTSID="{C171C229-3C2F-45BE-A8E4-B9382C0D5122}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="loadFecha"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{EF4CE5ED-1D15-4595-85AA-FC0C8B6E0719}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{3C2F19E7-F529-4640-A296-BA43BBFE8D99}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga_dim_fechas"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{13E184E4-E24F-4FEB-BAE5-D7447281EB08}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga_dim_fechas"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga_dim_fechas\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Carga_dim_fechas\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Conditional Split.Inputs[Conditional Split Input].Columns[ID_FECHADW]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ID_FECHADW"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[ID_FECHADW]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_dim_fechas\Conditional Split.Outputs[Insertar]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Insertar"
+                  synchronousInputId="Package\Carga_dim_fechas\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[ID_FECHADW]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(ID_FECHADW)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga_dim_fechas\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Carga_dim_fechas\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga_dim_fechas\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Carga_dim_fechas\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_dim_fechas\Destino_Fechas"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Destino_Fechas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_FECHA"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_dim_fechas\Destino_Fechas.Connections[IDbConnection]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[ID_FECHA]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[ID_FECHA]"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[ID_FECHA]"
+                      name="ID_FECHA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[SEMANA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[SEMANA]"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[SEMANA]"
+                      name="SEMANA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[DIA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[DIA]"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[DIA]"
+                      name="DIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[MES]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[MES]"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[MES]"
+                      name="MES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[AÑO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[AÑO]"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[AÑO]"
+                      name="AÑO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[SEMESTRE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[SEMESTRE]"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[SEMESTRE]"
+                      name="SEMESTRE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[ID_FECHA]"
+                      dataType="dbTimeStamp"
+                      name="ID_FECHA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[SEMANA]"
+                      dataType="wstr"
+                      length="30"
+                      name="SEMANA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[DIA]"
+                      dataType="wstr"
+                      length="30"
+                      name="DIA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[MES]"
+                      dataType="wstr"
+                      length="30"
+                      name="MES" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[AÑO]"
+                      dataType="i4"
+                      name="AÑO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].ExternalColumns[SEMESTRE]"
+                      dataType="i4"
+                      name="SEMESTRE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[ID_FECHA]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[ID_FECHA]"
+                      name="ID_FECHA" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[SEMANA]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[SEMANA]"
+                      name="SEMANA" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[DIA]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[DIA]"
+                      name="DIA" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[MES]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[MES]"
+                      name="MES" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[AÑO]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[AÑO]"
+                      name="AÑO" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[SEMESTRE]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[SEMESTRE]"
+                      name="SEMESTRE" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_dim_fechas\Dim_Fechas"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Dim_Fechas"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_FECHA"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_dim_fechas\Dim_Fechas.Connections[IDbConnection]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].Columns[FechaBD]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FechaBD"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[ID_FECHA]"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[FechaBD]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].Columns[SemanaBD]"
+                      cachedDataType="i4"
+                      cachedName="SemanaBD"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[SEMANA]"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SemanaBD]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].Columns[DiaBD]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="DiaBD"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[DIA]"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[DiaBD]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].Columns[MesBD]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MesBD"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[MES]"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[MesBD]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].Columns[AñoBD]"
+                      cachedDataType="i4"
+                      cachedName="AñoBD"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[AÑO]"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[AñoBD]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].Columns[SemestreBD]"
+                      cachedDataType="i4"
+                      cachedName="SemestreBD"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[SEMESTRE]"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SemestreBD]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[ID_FECHA]"
+                      dataType="dbTimeStamp"
+                      name="ID_FECHA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[SEMANA]"
+                      dataType="wstr"
+                      length="30"
+                      name="SEMANA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[DIA]"
+                      dataType="wstr"
+                      length="30"
+                      name="DIA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[MES]"
+                      dataType="wstr"
+                      length="30"
+                      name="MES" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[AÑO]"
+                      dataType="i4"
+                      name="AÑO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input].ExternalColumns[SEMESTRE]"
+                      dataType="i4"
+                      name="SEMESTRE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_dim_fechas\Dim_Fechas.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Dim_Fechas.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Dim_Fechas.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Dim_Fechas.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_dim_fechas\Full_join_fechas"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Full_join_fechas"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Fecha]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Semana]"
+                      cachedDataType="i4"
+                      cachedName="Semana"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Semana]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Dia]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Dia"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Dia]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Mes]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Mes"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Mes]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Año]"
+                      cachedDataType="i4"
+                      cachedName="Año"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Año]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Semestre]"
+                      cachedDataType="i4"
+                      cachedName="Semestre"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Semestre]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[ID_FECHA]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ID_FECHA"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[ID_FECHA]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[SEMANA]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="SEMANA"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[SEMANA]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[DIA]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="DIA"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[DIA]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[MES]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MES"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[MES]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[AÑO]"
+                      cachedDataType="i4"
+                      cachedName="AÑO"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[AÑO]" />
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[SEMESTRE]"
+                      cachedDataType="i4"
+                      cachedName="SEMESTRE"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[SEMESTRE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[FechaBD]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[FechaBD]"
+                      name="FechaBD"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SemanaBD]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SemanaBD]"
+                      name="SemanaBD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Semana]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[DiaBD]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[DiaBD]"
+                      name="DiaBD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Dia]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[MesBD]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[MesBD]"
+                      name="MesBD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[AñoBD]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[AñoBD]"
+                      name="AñoBD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Año]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SemestreBD]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SemestreBD]"
+                      name="SemestreBD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input].Columns[Semestre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[ID_FECHADW]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[ID_FECHADW]"
+                      name="ID_FECHADW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[ID_FECHA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SEMANADW]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SEMANADW]"
+                      name="SEMANADW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[SEMANA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[DIADW]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[DIADW]"
+                      name="DIADW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[DIA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[MESDW]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[MESDW]"
+                      name="MESDW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[MES]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[AÑODW]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[AÑODW]"
+                      name="AÑODW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[AÑO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SEMESTREDW]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output].Columns[SEMESTREDW]"
+                      name="SEMESTREDW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input].Columns[SEMESTRE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_dim_fechas\Ord_Destino_Fechas"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Ord_Destino_Fechas"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Inputs[Sort Input].Columns[ID_FECHA]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ID_FECHA"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[ID_FECHA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Inputs[Sort Input].Columns[SEMANA]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="SEMANA"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[SEMANA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Inputs[Sort Input].Columns[DIA]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="DIA"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[DIA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Inputs[Sort Input].Columns[MES]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MES"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[MES]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Inputs[Sort Input].Columns[AÑO]"
+                      cachedDataType="i4"
+                      cachedName="AÑO"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[AÑO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Inputs[Sort Input].Columns[SEMESTRE]"
+                      cachedDataType="i4"
+                      cachedName="SEMESTRE"
+                      lineageId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[SEMESTRE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[ID_FECHA]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[ID_FECHA]"
+                      name="ID_FECHA"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[ID_FECHA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[SEMANA]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[SEMANA]"
+                      name="SEMANA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[SEMANA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[DIA]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[DIA]"
+                      name="DIA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[DIA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[MES]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[MES]"
+                      name="MES">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[MES]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[AÑO]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[AÑO]"
+                      name="AÑO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[AÑO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[SEMESTRE]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output].Columns[SEMESTRE]"
+                      name="SEMESTRE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output].Columns[SEMESTRE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_dim_fechas\Ord_Origen_Fechas"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Ord_Origen_Fechas"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Inputs[Sort Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Inputs[Sort Input].Columns[Semana]"
+                      cachedDataType="i4"
+                      cachedName="Semana"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Semana]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Inputs[Sort Input].Columns[Dia]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Dia"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Dia]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Inputs[Sort Input].Columns[Mes]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Mes"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Mes]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Inputs[Sort Input].Columns[Año]"
+                      cachedDataType="i4"
+                      cachedName="Año"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Año]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Inputs[Sort Input].Columns[Semestre]"
+                      cachedDataType="i4"
+                      cachedName="Semestre"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Semestre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Fecha]"
+                      name="Fecha"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Semana]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Semana]"
+                      name="Semana">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Semana]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Dia]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Dia]"
+                      name="Dia">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Dia]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Mes]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Mes]"
+                      name="Mes">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Año]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Año]"
+                      name="Año">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Año]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Semestre]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output].Columns[Semestre]"
+                      name="Semestre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Semestre]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_dim_fechas\Origen_Fechas"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Origen_Fechas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	distinct
+    Fecha,
+    DATEPART(WEEK, Fecha) AS Semana,
+    DATENAME(WEEKDAY, Fecha) AS Dia,
+    DATENAME(MONTH, Fecha) AS Mes,
+    DATEPART(YEAR, Fecha) AS Año,
+    CASE 
+        WHEN DATEPART(MONTH, Fecha) BETWEEN 1 AND 6 THEN 1 
+        ELSE 2 
+    END AS Semestre
+FROM 
+    VENTAS</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_dim_fechas\Origen_Fechas.Connections[IDbConnection]"
+                  connectionManagerID="{3EF6D189-090D-4858-93EC-56D559017E9D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.SamarImportadora]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Fecha]"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Fecha]"
+                      name="Fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Semana]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Semana]"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Semana]"
+                      name="Semana"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Dia]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Dia]"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Dia]"
+                      name="Dia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Mes]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Mes]"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Mes]"
+                      name="Mes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Año]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Año]"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Año]"
+                      name="Año"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Semestre]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Semestre]"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].Columns[Semestre]"
+                      name="Semestre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Fecha]"
+                      dataType="dbTimeStamp"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Semana]"
+                      dataType="i4"
+                      name="Semana" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Dia]"
+                      dataType="wstr"
+                      length="30"
+                      name="Dia" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Mes]"
+                      dataType="wstr"
+                      length="30"
+                      name="Mes" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Año]"
+                      dataType="i4"
+                      name="Año" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output].ExternalColumns[Semestre]"
+                      dataType="i4"
+                      name="Semestre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Fecha]"
+                      name="Fecha" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Semana]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Semana]"
+                      name="Semana" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Dia]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Dia]"
+                      name="Dia" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Mes]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Mes]"
+                      name="Mes" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Año]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Año]"
+                      name="Año" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Semestre]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[Semestre]"
+                      name="Semestre" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga_dim_fechas.Paths[ADO NET Source Output]"
+              endId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Inputs[Sort Input]"
+              name="ADO NET Source Output"
+              startId="Package\Carga_dim_fechas\Origen_Fechas.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Carga_dim_fechas.Paths[ADO NET Source Output1]"
+              endId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Inputs[Sort Input]"
+              name="ADO NET Source Output"
+              startId="Package\Carga_dim_fechas\Destino_Fechas.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Carga_dim_fechas.Paths[Insertar]"
+              endId="Package\Carga_dim_fechas\Dim_Fechas.Inputs[ADO NET Destination Input]"
+              name="Insertar"
+              startId="Package\Carga_dim_fechas\Conditional Split.Outputs[Insertar]" />
+            <path
+              refId="Package\Carga_dim_fechas.Paths[Merge Join Output]"
+              endId="Package\Carga_dim_fechas\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Carga_dim_fechas\Full_join_fechas.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Carga_dim_fechas.Paths[Sort Output]"
+              endId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Carga_dim_fechas\Ord_Origen_Fechas.Outputs[Sort Output]" />
+            <path
+              refId="Package\Carga_dim_fechas.Paths[Sort Output1]"
+              endId="Package\Carga_dim_fechas\Full_join_fechas.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Carga_dim_fechas\Ord_Destino_Fechas.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -24,5 +1429,247 @@
 <Objects
   Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Carga_dim_fechas"
+          TopLeft="304,106" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Carga_dim_fechas">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Carga_dim_fechas\Origen_Fechas"
+          TopLeft="218,90" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Carga_dim_fechas\Destino_Fechas"
+          TopLeft="640,94" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Carga_dim_fechas\Ord_Origen_Fechas"
+          TopLeft="212,213" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Carga_dim_fechas\Ord_Destino_Fechas"
+          TopLeft="624,213" />
+        <EdgeLayout
+          Id="Package\Carga_dim_fechas.Paths[ADO NET Source Output]"
+          TopLeft="295.25,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81"
+              Start="0,0"
+              End="0,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga_dim_fechas.Paths[ADO NET Source Output1]"
+          TopLeft="714.25,136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77"
+              Start="0,0"
+              End="0,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Carga_dim_fechas\Full_join_fechas"
+          TopLeft="470,363" />
+        <EdgeLayout
+          Id="Package\Carga_dim_fechas.Paths[Sort Output]"
+          TopLeft="298,255">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="249,108"
+              Start="0,0"
+              End="249,100.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,50"
+                    Point2="0,54"
+                    Point3="4,54" />
+                  <mssgle:LineSegment
+                    End="245,54" />
+                  <mssgle:CubicBezierSegment
+                    Point1="245,54"
+                    Point2="249,54"
+                    Point3="249,58" />
+                  <mssgle:LineSegment
+                    End="249,100.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga_dim_fechas.Paths[Sort Output1]"
+          TopLeft="712,255">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-140.666666666667,108"
+              Start="0,0"
+              End="-140.666666666667,100.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.133676092545" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60.133676092545"
+                    Point2="0,64.133676092545"
+                    Point3="-4,64.133676092545" />
+                  <mssgle:LineSegment
+                    End="-136.666666666667,64.133676092545" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-136.666666666667,64.133676092545"
+                    Point2="-140.666666666667,64.133676092545"
+                    Point3="-140.666666666667,68.133676092545" />
+                  <mssgle:LineSegment
+                    End="-140.666666666667,100.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Carga_dim_fechas\Conditional Split"
+          TopLeft="482,485" />
+        <EdgeLayout
+          Id="Package\Carga_dim_fechas.Paths[Merge Join Output]"
+          TopLeft="547,405">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,80"
+              Start="0,0"
+              End="12.5,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36"
+                    Point2="0,40"
+                    Point3="4,40" />
+                  <mssgle:LineSegment
+                    End="8.5,40" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,40"
+                    Point2="12.5,40"
+                    Point3="12.5,44" />
+                  <mssgle:LineSegment
+                    End="12.5,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Carga_dim_fechas\Dim_Fechas"
+          TopLeft="493,598" />
+        <EdgeLayout
+          Id="Package\Carga_dim_fechas.Paths[Insertar]"
+          TopLeft="560.25,527">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-18.16029296875,27.0390625,36.3205859375,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_dim_fechas\Origen_Fechas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_dim_fechas\Destino_Fechas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_dim_fechas\Dim_Fechas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

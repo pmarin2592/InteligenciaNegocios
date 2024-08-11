@@ -1,49 +1,49 @@
 <?xml version="1.0"?>
-<BuildLog xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>ProyectoInteligenciaG1</Name>
-    <LastWriteTime>2024-08-02T15:44:37.7649549Z</LastWriteTime>
+    <LastWriteTime>2024-08-11T06:41:08.3629722Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>loadVendedor.dtsx</Name>
-      <LastWriteTime>2024-07-29T02:03:11.8675459Z</LastWriteTime>
+      <LastWriteTime>2024-07-29T02:15:30.5810514Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>loadCliente.dtsx</Name>
-      <LastWriteTime>2024-07-29T02:03:11.8275212Z</LastWriteTime>
+      <LastWriteTime>2024-07-29T02:15:30.5640785Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>loadProducto.dtsx</Name>
-      <LastWriteTime>2024-08-02T16:25:32.4435714Z</LastWriteTime>
+      <LastWriteTime>2024-08-11T06:34:23.2829618Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>loadVenta.dtsx</Name>
-      <LastWriteTime>2024-08-02T16:49:57.3670377Z</LastWriteTime>
+      <LastWriteTime>2024-08-11T06:38:52.519098Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>loadSucursal.dtsx</Name>
-      <LastWriteTime>2024-07-29T02:03:11.8675459Z</LastWriteTime>
+      <LastWriteTime>2024-07-29T02:15:30.5802163Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>loadComuna.dtsx</Name>
-      <LastWriteTime>2024-07-29T02:03:11.8355389Z</LastWriteTime>
+      <LastWriteTime>2024-07-29T02:15:30.5640785Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>loadFecha.dtsx</Name>
-      <LastWriteTime>2024-07-29T02:03:11.8515272Z</LastWriteTime>
+      <LastWriteTime>2024-08-11T06:08:09.3445419Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>loadFacVentas.dtsx</Name>
-      <LastWriteTime>2024-07-29T02:03:11.843523Z</LastWriteTime>
+      <LastWriteTime>2024-08-11T06:28:26.4953542Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
