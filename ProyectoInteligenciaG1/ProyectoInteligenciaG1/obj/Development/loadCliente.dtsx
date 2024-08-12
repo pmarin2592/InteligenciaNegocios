@@ -11,9 +11,1667 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionGUID="{29F73A7E-C276-4965-A0FD-D3E273314877}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{47779FEF-20CA-4A7E-9558-801FFE7BA926}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Dim_Cliente"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0A4825BC-B0C8-460E-B911-881A50D6B0A3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar Dim_Cliente"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar Dim_Cliente\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Cliente\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Conditional Split.Inputs[Conditional Split Input].Columns[DW_ID_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DW_ID_CLIENTE"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ID_CLIENTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Conditional Split.Outputs[Insertar]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Insertar"
+                  synchronousInputId="Package\Cargar Dim_Cliente\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ID_CLIENTE]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(DW_ID_CLIENTE)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Cargar Dim_Cliente\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Cargar Dim_Cliente\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Cliente\Destino_Cliente"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Destino_Cliente"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_CLIENTE"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Dim_Cliente\Destino_Cliente.Connections[IDbConnection]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ID_CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ID_CLIENTE]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE_COMPLETO]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ESTADO_CIVIL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ESTADO_CIVIL]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ESTADO_CIVIL]"
+                      name="ESTADO_CIVIL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ANO_NACIMIENTO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ANO_NACIMIENTO]"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ANO_NACIMIENTO]"
+                      name="ANO_NACIMIENTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[EDAD]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[EDAD]"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[EDAD]"
+                      name="EDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ORIGEN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ORIGEN]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ORIGEN]"
+                      name="ORIGEN"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ID_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="ID_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOMBRE_COMPLETO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ESTADO_CIVIL]"
+                      dataType="wstr"
+                      length="255"
+                      name="ESTADO_CIVIL" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ANO_NACIMIENTO]"
+                      dataType="i4"
+                      name="ANO_NACIMIENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[EDAD]"
+                      dataType="i4"
+                      name="EDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ORIGEN]"
+                      dataType="wstr"
+                      length="255"
+                      name="ORIGEN" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ID_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ESTADO_CIVIL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ESTADO_CIVIL]"
+                      name="ESTADO_CIVIL" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ANO_NACIMIENTO]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ANO_NACIMIENTO]"
+                      name="ANO_NACIMIENTO" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[EDAD]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[EDAD]"
+                      name="EDAD" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ORIGEN]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ORIGEN]"
+                      name="ORIGEN" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Cliente\Dim_Cliente"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Dim_Cliente"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_CLIENTE"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Dim_Cliente\Dim_Cliente.Connections[IDbConnection]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].Columns[BD_ID_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BD_ID_CLIENTE"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[ID_CLIENTE]"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ID_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].Columns[BD_NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="511"
+                      cachedName="BD_NOMBRE_COMPLETO"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[NOMBRE_COMPLETO]"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_NOMBRE_COMPLETO]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].Columns[BD_ESTADO_CIVIL]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BD_ESTADO_CIVIL"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[ESTADO_CIVIL]"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ESTADO_CIVIL]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].Columns[BD_ANO_NACIMIENTO]"
+                      cachedDataType="i4"
+                      cachedName="BD_ANO_NACIMIENTO"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[ANO_NACIMIENTO]"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ANO_NACIMIENTO]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].Columns[BD_EDAD]"
+                      cachedDataType="i2"
+                      cachedName="BD_EDAD"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[EDAD]"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_EDAD]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].Columns[BD_ORIGEN]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BD_ORIGEN"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[ORIGEN]"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ORIGEN]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[ID_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="ID_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOMBRE_COMPLETO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[ESTADO_CIVIL]"
+                      dataType="wstr"
+                      length="255"
+                      name="ESTADO_CIVIL" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[ANO_NACIMIENTO]"
+                      dataType="i4"
+                      name="ANO_NACIMIENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[EDAD]"
+                      dataType="i4"
+                      name="EDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input].ExternalColumns[ORIGEN]"
+                      dataType="wstr"
+                      length="255"
+                      name="ORIGEN" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Dim_Cliente.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Dim_Cliente.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Dim_Cliente.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Dim_Cliente.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Cliente\Full_Join_Cliente"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Full_Join_Cliente"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[ID_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ID_CLIENTE"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ID_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="511"
+                      cachedName="NOMBRE_COMPLETO"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[ESTADO_CIVIL]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ESTADO_CIVIL"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ESTADO_CIVIL]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[ANO_NACIMIENTO]"
+                      cachedDataType="i4"
+                      cachedName="ANO_NACIMIENTO"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ANO_NACIMIENTO]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[EDAD]"
+                      cachedDataType="i2"
+                      cachedName="EDAD"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[EDAD]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[ORIGEN]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ORIGEN"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ORIGEN]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[ID_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ID_CLIENTE"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ID_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOMBRE_COMPLETO"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[ESTADO_CIVIL]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ESTADO_CIVIL"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ESTADO_CIVIL]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[ANO_NACIMIENTO]"
+                      cachedDataType="i4"
+                      cachedName="ANO_NACIMIENTO"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ANO_NACIMIENTO]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[EDAD]"
+                      cachedDataType="i4"
+                      cachedName="EDAD"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[EDAD]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[ORIGEN]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ORIGEN"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ORIGEN]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ID_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ID_CLIENTE]"
+                      name="BD_ID_CLIENTE"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[ID_CLIENTE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="511"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_NOMBRE_COMPLETO]"
+                      name="BD_NOMBRE_COMPLETO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[NOMBRE_COMPLETO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ESTADO_CIVIL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ESTADO_CIVIL]"
+                      name="BD_ESTADO_CIVIL">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[ESTADO_CIVIL]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ANO_NACIMIENTO]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ANO_NACIMIENTO]"
+                      name="BD_ANO_NACIMIENTO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[ANO_NACIMIENTO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_EDAD]"
+                      dataType="i2"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_EDAD]"
+                      name="BD_EDAD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[EDAD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ORIGEN]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[BD_ORIGEN]"
+                      name="BD_ORIGEN">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input].Columns[ORIGEN]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ID_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ID_CLIENTE]"
+                      name="DW_ID_CLIENTE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[ID_CLIENTE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_NOMBRE_COMPLETO]"
+                      name="DW_NOMBRE_COMPLETO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[NOMBRE_COMPLETO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ESTADO_CIVIL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ESTADO_CIVIL]"
+                      name="DW_ESTADO_CIVIL">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[ESTADO_CIVIL]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ANO_NACIMIENTO]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ANO_NACIMIENTO]"
+                      name="DW_ANO_NACIMIENTO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[ANO_NACIMIENTO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_EDAD]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_EDAD]"
+                      name="DW_EDAD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[EDAD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ORIGEN]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output].Columns[DW_ORIGEN]"
+                      name="DW_ORIGEN">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input].Columns[ORIGEN]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Cliente\Origen_Cliente"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Origen_Cliente"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT     ID_CLIENTE, NOMBRE + ' ' + APELLIDO AS NOMBRE_COMPLETO, ESTADO_CIVIL, YEAR(GETDATE()) - EDAD AS ANO_NACIMIENTO, EDAD, ORIGEN
+FROM        CLIENTES</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Dim_Cliente\Origen_Cliente.Connections[IDbConnection]"
+                  connectionManagerID="{3EF6D189-090D-4858-93EC-56D559017E9D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.SamarImportadora]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ID_CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ID_CLIENTE]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE_COMPLETO]"
+                      length="511"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ESTADO_CIVIL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ESTADO_CIVIL]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ESTADO_CIVIL]"
+                      name="ESTADO_CIVIL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ANO_NACIMIENTO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ANO_NACIMIENTO]"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ANO_NACIMIENTO]"
+                      name="ANO_NACIMIENTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[EDAD]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[EDAD]"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[EDAD]"
+                      name="EDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ORIGEN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ORIGEN]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ORIGEN]"
+                      name="ORIGEN"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ID_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="ID_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="511"
+                      name="NOMBRE_COMPLETO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ESTADO_CIVIL]"
+                      dataType="wstr"
+                      length="255"
+                      name="ESTADO_CIVIL" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ANO_NACIMIENTO]"
+                      dataType="i4"
+                      name="ANO_NACIMIENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[EDAD]"
+                      dataType="i2"
+                      name="EDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].ExternalColumns[ORIGEN]"
+                      dataType="wstr"
+                      length="255"
+                      name="ORIGEN" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ID_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="511"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ESTADO_CIVIL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ESTADO_CIVIL]"
+                      name="ESTADO_CIVIL" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ANO_NACIMIENTO]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ANO_NACIMIENTO]"
+                      name="ANO_NACIMIENTO" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[EDAD]"
+                      dataType="i2"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[EDAD]"
+                      name="EDAD" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ORIGEN]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ORIGEN]"
+                      name="ORIGEN" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort_Destino_Cliente"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Inputs[Sort Input].Columns[ID_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ID_CLIENTE"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ID_CLIENTE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Inputs[Sort Input].Columns[NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOMBRE_COMPLETO"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Inputs[Sort Input].Columns[ESTADO_CIVIL]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ESTADO_CIVIL"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ESTADO_CIVIL]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Inputs[Sort Input].Columns[ANO_NACIMIENTO]"
+                      cachedDataType="i4"
+                      cachedName="ANO_NACIMIENTO"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ANO_NACIMIENTO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Inputs[Sort Input].Columns[EDAD]"
+                      cachedDataType="i4"
+                      cachedName="EDAD"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[EDAD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Inputs[Sort Input].Columns[ORIGEN]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ORIGEN"
+                      lineageId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ORIGEN]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ID_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ID_CLIENTE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ESTADO_CIVIL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ESTADO_CIVIL]"
+                      name="ESTADO_CIVIL">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ESTADO_CIVIL]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ANO_NACIMIENTO]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ANO_NACIMIENTO]"
+                      name="ANO_NACIMIENTO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ANO_NACIMIENTO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[EDAD]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[EDAD]"
+                      name="EDAD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[EDAD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ORIGEN]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output].Columns[ORIGEN]"
+                      name="ORIGEN">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output].Columns[ORIGEN]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort_Origen_Cliente"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Inputs[Sort Input].Columns[ID_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ID_CLIENTE"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ID_CLIENTE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Inputs[Sort Input].Columns[NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="511"
+                      cachedName="NOMBRE_COMPLETO"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Inputs[Sort Input].Columns[ESTADO_CIVIL]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ESTADO_CIVIL"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ESTADO_CIVIL]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Inputs[Sort Input].Columns[ANO_NACIMIENTO]"
+                      cachedDataType="i4"
+                      cachedName="ANO_NACIMIENTO"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ANO_NACIMIENTO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Inputs[Sort Input].Columns[EDAD]"
+                      cachedDataType="i2"
+                      cachedName="EDAD"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[EDAD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Inputs[Sort Input].Columns[ORIGEN]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ORIGEN"
+                      lineageId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ORIGEN]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ID_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ID_CLIENTE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="511"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ESTADO_CIVIL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ESTADO_CIVIL]"
+                      name="ESTADO_CIVIL">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ESTADO_CIVIL]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ANO_NACIMIENTO]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ANO_NACIMIENTO]"
+                      name="ANO_NACIMIENTO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ANO_NACIMIENTO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[EDAD]"
+                      dataType="i2"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[EDAD]"
+                      name="EDAD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[EDAD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ORIGEN]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output].Columns[ORIGEN]"
+                      name="ORIGEN">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output].Columns[ORIGEN]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar Dim_Cliente.Paths[ADO NET Source Output]"
+              endId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Inputs[Sort Input]"
+              name="ADO NET Source Output"
+              startId="Package\Cargar Dim_Cliente\Origen_Cliente.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Cargar Dim_Cliente.Paths[ADO NET Source Output1]"
+              endId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Inputs[Sort Input]"
+              name="ADO NET Source Output"
+              startId="Package\Cargar Dim_Cliente\Destino_Cliente.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Cargar Dim_Cliente.Paths[Insertar]"
+              endId="Package\Cargar Dim_Cliente\Dim_Cliente.Inputs[ADO NET Destination Input]"
+              name="Insertar"
+              startId="Package\Cargar Dim_Cliente\Conditional Split.Outputs[Insertar]" />
+            <path
+              refId="Package\Cargar Dim_Cliente.Paths[Merge Join Output]"
+              endId="Package\Cargar Dim_Cliente\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Cargar Dim_Cliente.Paths[Sort Output]"
+              endId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Cargar Dim_Cliente\Sort_Origen_Cliente.Outputs[Sort Output]" />
+            <path
+              refId="Package\Cargar Dim_Cliente.Paths[Sort Output1]"
+              endId="Package\Cargar Dim_Cliente\Full_Join_Cliente.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Cargar Dim_Cliente\Sort_Destino_Cliente.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Cargar Dim_Cliente"
+          TopLeft="293.57143357092,47.4117653708145" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Cargar Dim_Cliente">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\Cargar Dim_Cliente\Origen_Cliente"
+          TopLeft="145.714288195785,32.1176475092614" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Cargar Dim_Cliente\Destino_Cliente"
+          TopLeft="478.571436721452,35.176471081572" />
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Cargar Dim_Cliente\Sort_Origen_Cliente"
+          TopLeft="135.714288025486,127.705884143968" />
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\Cargar Dim_Cliente\Sort_Destino_Cliente"
+          TopLeft="459.285722107304,132.294119502434" />
+        <EdgeLayout
+          Id="Package\Cargar Dim_Cliente.Paths[ADO NET Source Output]"
+          TopLeft="220.714288110636,73.7176475092614">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.9882366347066"
+              Start="0,0"
+              End="0,46.4882366347066">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.4882366347066" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar Dim_Cliente.Paths[ADO NET Source Output1]"
+          TopLeft="550.928579414378,76.776471081572">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.5176484208619"
+              Start="0,0"
+              End="0,48.0176484208619">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.0176484208619" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Cargar Dim_Cliente\Full_Join_Cliente"
+          TopLeft="295.71429075027,263.058827218713" />
+        <EdgeLayout
+          Id="Package\Cargar Dim_Cliente.Paths[Sort Output]"
+          TopLeft="222.114288025486,169.305884143968">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127.200002724784,93.7529430747446"
+              Start="0,0"
+              End="127.200002724784,86.2529430747446">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.6835661898483" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.6835661898483"
+                    Point2="0,55.6835661898483"
+                    Point3="4,55.6835661898483" />
+                  <mssgle:LineSegment
+                    End="123.200002724784,55.6835661898483" />
+                  <mssgle:CubicBezierSegment
+                    Point1="123.200002724784,55.6835661898483"
+                    Point2="127.200002724784,55.6835661898483"
+                    Point3="127.200002724784,59.6835661898483" />
+                  <mssgle:LineSegment
+                    End="127.200002724784,86.2529430747446" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar Dim_Cliente.Paths[Sort Output1]"
+          TopLeft="547.685722107304,173.894119502434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-148.771431357034,89.1647077162786"
+              Start="0,0"
+              End="-148.771431357034,81.6647077162786">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.9584324617897" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.9584324617897"
+                    Point2="0,52.9584324617897"
+                    Point3="-4,52.9584324617897" />
+                  <mssgle:LineSegment
+                    End="-144.771431357034,52.9584324617897" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-144.771431357034,52.9584324617897"
+                    Point2="-148.771431357034,52.9584324617897"
+                    Point3="-148.771431357034,56.9584324617897" />
+                  <mssgle:LineSegment
+                    End="-148.771431357034,81.6647077162786" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Cargar Dim_Cliente\Conditional Split"
+          TopLeft="300.71429083542,339.529416526478" />
+        <EdgeLayout
+          Id="Package\Cargar Dim_Cliente.Paths[Merge Join Output]"
+          TopLeft="376.014290792845,304.658827218713">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.8705893077652"
+              Start="0,0"
+              End="0,27.3705893077652">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.3705893077652" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="135.2,41.6"
+          Id="Package\Cargar Dim_Cliente\Dim_Cliente"
+          TopLeft="312.857148185068,425.941182444252" />
+        <EdgeLayout
+          Id="Package\Cargar Dim_Cliente.Paths[Insertar]"
+          TopLeft="379.185719510244,381.129416526478">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.8117659177747"
+              Start="0,0"
+              End="0,37.3117659177747">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.3117659177747" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-18.16029296875,13.9449454588873,36.3205859375,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Dim_Cliente\Origen_Cliente">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Dim_Cliente\Destino_Cliente">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Dim_Cliente\Dim_Cliente">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

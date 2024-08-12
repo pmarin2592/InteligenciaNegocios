@@ -11,12 +11,1118 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="loadVendedor"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{5D81BB32-7638-480D-8AD0-0D4419F91341}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{BB5A24F2-DB8D-4764-BBBA-DE9711CA25C0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Dim_Vendedor"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ADF0F188-232E-42B3-AB8B-3CE3EBA474D7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar Dim_Vendedor"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar Dim_Vendedor\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Vendedor\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Conditional Split.Inputs[Conditional Split Input].Columns[DW_ID_VENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="DW_ID_VENDEDOR"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_ID_VENDEDOR]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Conditional Split.Outputs[Insertar]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Insertar"
+                  synchronousInputId="Package\Cargar Dim_Vendedor\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_ID_VENDEDOR]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(DW_ID_VENDEDOR)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Cargar Dim_Vendedor\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Cargar Dim_Vendedor\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Vendedor\Destino_Vendedor"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Destino_Vendedor"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_VENDEDOR"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Connections[IDbConnection]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[ID_VENDEDOR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[ID_VENDEDOR]"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[ID_VENDEDOR]"
+                      name="ID_VENDEDOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE_COMPLETO]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[TIPO_CAPACITACION]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[TIPO_CAPACITACION]"
+                      name="TIPO_CAPACITACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[HORAS_CAPACITACION]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[HORAS_CAPACITACION]"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[HORAS_CAPACITACION]"
+                      name="HORAS_CAPACITACION"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[ID_VENDEDOR]"
+                      dataType="i4"
+                      name="ID_VENDEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOMBRE_COMPLETO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      length="255"
+                      name="TIPO_CAPACITACION" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[HORAS_CAPACITACION]"
+                      dataType="i4"
+                      name="HORAS_CAPACITACION" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[ID_VENDEDOR]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[ID_VENDEDOR]"
+                      name="ID_VENDEDOR" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[TIPO_CAPACITACION]"
+                      name="TIPO_CAPACITACION" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[HORAS_CAPACITACION]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[HORAS_CAPACITACION]"
+                      name="HORAS_CAPACITACION" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Vendedor\Dim_Vendedor"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Dim_Vendedor"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_VENDEDOR"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Connections[IDbConnection]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].Columns[BD_ID_VENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="BD_ID_VENDEDOR"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].ExternalColumns[ID_VENDEDOR]"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_ID_VENDEDOR]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].Columns[BD_NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="511"
+                      cachedName="BD_NOMBRE_COMPLETO"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].ExternalColumns[NOMBRE_COMPLETO]"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_NOMBRE_COMPLETO]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].Columns[BD_TIPO_CAPACITACION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BD_TIPO_CAPACITACION"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].ExternalColumns[TIPO_CAPACITACION]"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_TIPO_CAPACITACION]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].Columns[BD_HORAS_CAPACITACION]"
+                      cachedDataType="i4"
+                      cachedName="BD_HORAS_CAPACITACION"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].ExternalColumns[HORAS_CAPACITACION]"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_HORAS_CAPACITACION]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].ExternalColumns[ID_VENDEDOR]"
+                      dataType="i4"
+                      name="ID_VENDEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].ExternalColumns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOMBRE_COMPLETO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].ExternalColumns[TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      length="255"
+                      name="TIPO_CAPACITACION" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input].ExternalColumns[HORAS_CAPACITACION]"
+                      dataType="i4"
+                      name="HORAS_CAPACITACION" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Vendedor\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[ID_VENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="ID_VENDEDOR"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[ID_VENDEDOR]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="511"
+                      cachedName="NOMBRE_COMPLETO"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[TIPO_CAPACITACION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TIPO_CAPACITACION"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[TIPO_CAPACITACION]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[HORAS_CAPACITACION]"
+                      cachedDataType="i4"
+                      cachedName="HORAS_CAPACITACION"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[HORAS_CAPACITACION]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input].Columns[ID_VENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="ID_VENDEDOR"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[ID_VENDEDOR]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input].Columns[NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOMBRE_COMPLETO"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input].Columns[TIPO_CAPACITACION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TIPO_CAPACITACION"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[TIPO_CAPACITACION]" />
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input].Columns[HORAS_CAPACITACION]"
+                      cachedDataType="i4"
+                      cachedName="HORAS_CAPACITACION"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[HORAS_CAPACITACION]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_ID_VENDEDOR]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_ID_VENDEDOR]"
+                      name="BD_ID_VENDEDOR"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[ID_VENDEDOR]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="511"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_NOMBRE_COMPLETO]"
+                      name="BD_NOMBRE_COMPLETO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[NOMBRE_COMPLETO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_TIPO_CAPACITACION]"
+                      name="BD_TIPO_CAPACITACION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[TIPO_CAPACITACION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_HORAS_CAPACITACION]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[BD_HORAS_CAPACITACION]"
+                      name="BD_HORAS_CAPACITACION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[HORAS_CAPACITACION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_ID_VENDEDOR]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_ID_VENDEDOR]"
+                      name="DW_ID_VENDEDOR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input].Columns[ID_VENDEDOR]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_NOMBRE_COMPLETO]"
+                      name="DW_NOMBRE_COMPLETO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input].Columns[NOMBRE_COMPLETO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_TIPO_CAPACITACION]"
+                      name="DW_TIPO_CAPACITACION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input].Columns[TIPO_CAPACITACION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_HORAS_CAPACITACION]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output].Columns[DW_HORAS_CAPACITACION]"
+                      name="DW_HORAS_CAPACITACION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input].Columns[HORAS_CAPACITACION]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Vendedor\Origen_Vendedor"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Origen_Vendedor"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT     CAST(ID_VENDEDOR AS INT) ID_VENDEDOR, Nombre + ' ' + Apellido AS NOMBRE_COMPLETO, [TIPO_ CAPACITACION] as TIPO_CAPACITACION, CAST(HORAS_CAPACITACION AS INT) HORAS_CAPACITACION
+FROM        VENDEDORES</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Connections[IDbConnection]"
+                  connectionManagerID="{3EF6D189-090D-4858-93EC-56D559017E9D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.SamarImportadora]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[ID_VENDEDOR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[ID_VENDEDOR]"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[ID_VENDEDOR]"
+                      name="ID_VENDEDOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE_COMPLETO]"
+                      length="511"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[TIPO_CAPACITACION]"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[TIPO_CAPACITACION]"
+                      name="TIPO_CAPACITACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[HORAS_CAPACITACION]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[HORAS_CAPACITACION]"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[HORAS_CAPACITACION]"
+                      name="HORAS_CAPACITACION"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[ID_VENDEDOR]"
+                      dataType="i4"
+                      name="ID_VENDEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="511"
+                      name="NOMBRE_COMPLETO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      length="255"
+                      name="TIPO_CAPACITACION" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].ExternalColumns[HORAS_CAPACITACION]"
+                      dataType="i4"
+                      name="HORAS_CAPACITACION" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[ID_VENDEDOR]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[ID_VENDEDOR]"
+                      name="ID_VENDEDOR" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="511"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[TIPO_CAPACITACION]"
+                      name="TIPO_CAPACITACION" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[HORAS_CAPACITACION]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[HORAS_CAPACITACION]"
+                      name="HORAS_CAPACITACION" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort_Destino_Vendedor"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Inputs[Sort Input].Columns[ID_VENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="ID_VENDEDOR"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[ID_VENDEDOR]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Inputs[Sort Input].Columns[NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOMBRE_COMPLETO"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Inputs[Sort Input].Columns[TIPO_CAPACITACION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TIPO_CAPACITACION"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[TIPO_CAPACITACION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Inputs[Sort Input].Columns[HORAS_CAPACITACION]"
+                      cachedDataType="i4"
+                      cachedName="HORAS_CAPACITACION"
+                      lineageId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[HORAS_CAPACITACION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[ID_VENDEDOR]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[ID_VENDEDOR]"
+                      name="ID_VENDEDOR"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[ID_VENDEDOR]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[TIPO_CAPACITACION]"
+                      name="TIPO_CAPACITACION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[TIPO_CAPACITACION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[HORAS_CAPACITACION]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output].Columns[HORAS_CAPACITACION]"
+                      name="HORAS_CAPACITACION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output].Columns[HORAS_CAPACITACION]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort_Origen_Vendedor"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Inputs[Sort Input].Columns[ID_VENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="ID_VENDEDOR"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[ID_VENDEDOR]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Inputs[Sort Input].Columns[NOMBRE_COMPLETO]"
+                      cachedDataType="wstr"
+                      cachedLength="511"
+                      cachedName="NOMBRE_COMPLETO"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Inputs[Sort Input].Columns[TIPO_CAPACITACION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TIPO_CAPACITACION"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[TIPO_CAPACITACION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Inputs[Sort Input].Columns[HORAS_CAPACITACION]"
+                      cachedDataType="i4"
+                      cachedName="HORAS_CAPACITACION"
+                      lineageId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[HORAS_CAPACITACION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[ID_VENDEDOR]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[ID_VENDEDOR]"
+                      name="ID_VENDEDOR"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[ID_VENDEDOR]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]"
+                      dataType="wstr"
+                      length="511"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[NOMBRE_COMPLETO]"
+                      name="NOMBRE_COMPLETO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[NOMBRE_COMPLETO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[TIPO_CAPACITACION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[TIPO_CAPACITACION]"
+                      name="TIPO_CAPACITACION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[TIPO_CAPACITACION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[HORAS_CAPACITACION]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output].Columns[HORAS_CAPACITACION]"
+                      name="HORAS_CAPACITACION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output].Columns[HORAS_CAPACITACION]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar Dim_Vendedor.Paths[ADO NET Source Output]"
+              endId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Inputs[Sort Input]"
+              name="ADO NET Source Output"
+              startId="Package\Cargar Dim_Vendedor\Destino_Vendedor.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Cargar Dim_Vendedor.Paths[ADO NET Source Output1]"
+              endId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Inputs[Sort Input]"
+              name="ADO NET Source Output"
+              startId="Package\Cargar Dim_Vendedor\Origen_Vendedor.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Cargar Dim_Vendedor.Paths[Insertar]"
+              endId="Package\Cargar Dim_Vendedor\Dim_Vendedor.Inputs[ADO NET Destination Input]"
+              name="Insertar"
+              startId="Package\Cargar Dim_Vendedor\Conditional Split.Outputs[Insertar]" />
+            <path
+              refId="Package\Cargar Dim_Vendedor.Paths[Merge Join Output]"
+              endId="Package\Cargar Dim_Vendedor\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Cargar Dim_Vendedor\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Cargar Dim_Vendedor.Paths[Sort Output]"
+              endId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor.Outputs[Sort Output]" />
+            <path
+              refId="Package\Cargar Dim_Vendedor.Paths[Sort Output1]"
+              endId="Package\Cargar Dim_Vendedor\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -24,5 +1130,235 @@
 <Objects
   Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\Cargar Dim_Vendedor"
+          TopLeft="306.21429083542,39.9117651884944" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Cargar Dim_Vendedor">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\Cargar Dim_Vendedor\Origen_Vendedor"
+          TopLeft="86.4285729004413,39.7647064400379" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Cargar Dim_Vendedor\Destino_Vendedor"
+          TopLeft="532.857151931646,42.8235300123486" />
+        <NodeLayout
+          Size="189.6,41.6"
+          Id="Package\Cargar Dim_Vendedor\Sort_Destino_Vendedor"
+          TopLeft="522.142866034898,127.705884143968" />
+        <EdgeLayout
+          Id="Package\Cargar Dim_Vendedor.Paths[ADO NET Source Output]"
+          TopLeft="616.100008983272,84.4235300123486">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.2823541316194"
+              Start="0,0"
+              End="0,35.7823541316194">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.7823541316194" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="185.6,41.6"
+          Id="Package\Cargar Dim_Vendedor\Sort_Origen_Vendedor"
+          TopLeft="73.5714298243426,143.000002005521" />
+        <EdgeLayout
+          Id="Package\Cargar Dim_Vendedor.Paths[ADO NET Source Output1]"
+          TopLeft="166.600001362392,81.3647064400379">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.6352955654831"
+              Start="0,0"
+              End="0,54.1352955654831">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.1352955654831" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Cargar Dim_Vendedor\Merge Join"
+          TopLeft="330.714291346316,266.882356684101" />
+        <EdgeLayout
+          Id="Package\Cargar Dim_Vendedor.Paths[Sort Output]"
+          TopLeft="166.371429824343,184.600002005521">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="229.142861521974,82.2823546785797"
+              Start="0,0"
+              End="229.142861521974,74.7823546785797">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.1411773392899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.1411773392899"
+                    Point2="0,41.1411773392899"
+                    Point3="4,41.1411773392899" />
+                  <mssgle:LineSegment
+                    End="225.142861521974,41.1411773392899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="225.142861521974,41.1411773392899"
+                    Point2="229.142861521974,41.1411773392899"
+                    Point3="229.142861521974,45.1411773392899" />
+                  <mssgle:LineSegment
+                    End="229.142861521974,74.7823546785797" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar Dim_Vendedor.Paths[Sort Output1]"
+          TopLeft="616.942866034898,169.305884143968">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-201.161908021914,97.5764725401328"
+              Start="0,0"
+              End="-201.161908021914,90.0764725401328">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.8319093347616" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,53.8319093347616"
+                    Point2="0,57.8319093347616"
+                    Point3="-4,57.8319093347616" />
+                  <mssgle:LineSegment
+                    End="-197.161908021914,57.8319093347616" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-197.161908021914,57.8319093347616"
+                    Point2="-201.161908021914,57.8319093347616"
+                    Point3="-201.161908021914,61.8319093347616" />
+                  <mssgle:LineSegment
+                    End="-201.161908021914,90.0764725401328" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Cargar Dim_Vendedor\Conditional Split"
+          TopLeft="317.142862543768,331.882357595701" />
+        <EdgeLayout
+          Id="Package\Cargar Dim_Vendedor.Paths[Merge Join Output]"
+          TopLeft="394.928576945042,308.482356684101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.4000009116004"
+              Start="0,0"
+              End="0,15.9000009116004">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.9000009116004" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148,41.6"
+          Id="Package\Cargar Dim_Vendedor\Dim_Vendedor"
+          TopLeft="320.000005449568,421.352947085786" />
+        <EdgeLayout
+          Id="Package\Cargar Dim_Vendedor.Paths[Insertar]"
+          TopLeft="394.171433996668,373.482357595701">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.8705894900853"
+              Start="0,0"
+              End="0,40.3705894900853">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3705894900853" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-18.16029296875,15.4743572450427,36.3205859375,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Dim_Vendedor\Origen_Vendedor">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Dim_Vendedor\Destino_Vendedor">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Dim_Vendedor\Dim_Vendedor">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
