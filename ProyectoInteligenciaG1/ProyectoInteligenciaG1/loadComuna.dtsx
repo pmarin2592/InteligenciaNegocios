@@ -11,12 +11,1136 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="loadComuna"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{8BC72486-DEBE-4CF7-BED3-8DE7C3EF9474}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{5528AFB8-292C-4D7E-B973-5F3F04E1241B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga_Dim_Comuna"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{415635E6-CF89-42D4-B739-2265925914DA}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga_Dim_Comuna"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga_Dim_Comuna\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Carga_Dim_Comuna\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Conditional Split.Inputs[Conditional Split Input].Columns[ID_COMUNA_DW]"
+                      cachedDataType="i4"
+                      cachedName="ID_COMUNA_DW"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[ID_COMUNA_DW]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Conditional Split.Outputs[Insertar]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Insertar"
+                  synchronousInputId="Package\Carga_Dim_Comuna\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[ID_COMUNA_DW]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(ID_COMUNA_DW)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Carga_Dim_Comuna\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Carga_Dim_Comuna\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_Dim_Comuna\Destino_Comuna"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Destino_Comuna"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_COMUNA"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_Dim_Comuna\Destino_Comuna.Connections[IDbConnection]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[ID_COMUNA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].ExternalColumns[ID_COMUNA]"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[ID_COMUNA]"
+                      name="ID_COMUNA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[COMUNA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].ExternalColumns[COMUNA]"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[COMUNA]"
+                      name="COMUNA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[PROVINCIA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].ExternalColumns[PROVINCIA]"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[PROVINCIA]"
+                      name="PROVINCIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[REGION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].ExternalColumns[REGION]"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[REGION]"
+                      name="REGION"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].ExternalColumns[ID_COMUNA]"
+                      dataType="i4"
+                      name="ID_COMUNA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].ExternalColumns[COMUNA]"
+                      dataType="wstr"
+                      length="255"
+                      name="COMUNA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].ExternalColumns[PROVINCIA]"
+                      dataType="wstr"
+                      length="255"
+                      name="PROVINCIA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].ExternalColumns[REGION]"
+                      dataType="wstr"
+                      length="255"
+                      name="REGION" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[ID_COMUNA]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[ID_COMUNA]"
+                      name="ID_COMUNA" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[COMUNA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[COMUNA]"
+                      name="COMUNA" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[PROVINCIA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[PROVINCIA]"
+                      name="PROVINCIA" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[REGION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[REGION]"
+                      name="REGION" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_Dim_Comuna\Dim_Comuna"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Dim_Comuna"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_COMUNA"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_Dim_Comuna\Dim_Comuna.Connections[IDbConnection]"
+                  connectionManagerID="{C3DC5108-2469-41A4-9D1E-C0BCFE1C88F2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.DW_ULATINA]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].Columns[COMUNAID_BD]"
+                      cachedDataType="i4"
+                      cachedName="COMUNAID_BD"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].ExternalColumns[ID_COMUNA]"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[COMUNAID_BD]" />
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].Columns[COMUNA_NOMBRE_BD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="COMUNA_NOMBRE_BD"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].ExternalColumns[COMUNA]"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[COMUNA_NOMBRE_BD]" />
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].Columns[PROVINCIA_NOMBRE_BD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PROVINCIA_NOMBRE_BD"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].ExternalColumns[PROVINCIA]"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[PROVINCIA_NOMBRE_BD]" />
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].Columns[REGION_BD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="REGION_BD"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].ExternalColumns[REGION]"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[REGION_BD]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].ExternalColumns[ID_COMUNA]"
+                      dataType="i4"
+                      name="ID_COMUNA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].ExternalColumns[COMUNA]"
+                      dataType="wstr"
+                      length="255"
+                      name="COMUNA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].ExternalColumns[PROVINCIA]"
+                      dataType="wstr"
+                      length="255"
+                      name="PROVINCIA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input].ExternalColumns[REGION]"
+                      dataType="wstr"
+                      length="255"
+                      name="REGION" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Dim_Comuna.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Dim_Comuna.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Dim_Comuna.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Dim_Comuna.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_Dim_Comuna\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[COMUNAID]"
+                      cachedDataType="i4"
+                      cachedName="COMUNAID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[COMUNAID]" />
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[COMUNA_NOMBRE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="COMUNA_NOMBRE"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[COMUNA_NOMBRE]" />
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[PROVINCIA_NOMBRE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PROVINCIA_NOMBRE"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[PROVINCIA_NOMBRE]" />
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[REGION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="REGION"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[REGION]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[ID_COMUNA]"
+                      cachedDataType="i4"
+                      cachedName="ID_COMUNA"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[ID_COMUNA]" />
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[COMUNA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="COMUNA"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[COMUNA]" />
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[PROVINCIA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PROVINCIA"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[PROVINCIA]" />
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[REGION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="REGION"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[REGION]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[COMUNAID_BD]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[COMUNAID_BD]"
+                      name="COMUNAID_BD"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[COMUNAID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[COMUNA_NOMBRE_BD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[COMUNA_NOMBRE_BD]"
+                      name="COMUNA_NOMBRE_BD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[COMUNA_NOMBRE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[PROVINCIA_NOMBRE_BD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[PROVINCIA_NOMBRE_BD]"
+                      name="PROVINCIA_NOMBRE_BD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[PROVINCIA_NOMBRE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[REGION_BD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[REGION_BD]"
+                      name="REGION_BD">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input].Columns[REGION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[ID_COMUNA_DW]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[ID_COMUNA_DW]"
+                      name="ID_COMUNA_DW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[ID_COMUNA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[COMUNA_DW]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[COMUNA_DW]"
+                      name="COMUNA_DW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[COMUNA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[PROVINCIA_DW]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[PROVINCIA_DW]"
+                      name="PROVINCIA_DW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[PROVINCIA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[REGION_DW]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output].Columns[REGION_DW]"
+                      name="REGION_DW">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input].Columns[REGION]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Ord_Destino_Comuna"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Inputs[Sort Input].Columns[ID_COMUNA]"
+                      cachedDataType="i4"
+                      cachedName="ID_COMUNA"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[ID_COMUNA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Inputs[Sort Input].Columns[COMUNA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="COMUNA"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[COMUNA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Inputs[Sort Input].Columns[PROVINCIA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PROVINCIA"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[PROVINCIA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Inputs[Sort Input].Columns[REGION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="REGION"
+                      lineageId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[REGION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[ID_COMUNA]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[ID_COMUNA]"
+                      name="ID_COMUNA"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[ID_COMUNA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[COMUNA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[COMUNA]"
+                      name="COMUNA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[COMUNA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[PROVINCIA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[PROVINCIA]"
+                      name="PROVINCIA">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[PROVINCIA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[REGION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output].Columns[REGION]"
+                      name="REGION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output].Columns[REGION]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Ord_Origen_Comuna"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Inputs[Sort Input].Columns[COMUNAID]"
+                      cachedDataType="i4"
+                      cachedName="COMUNAID"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[COMUNAID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Inputs[Sort Input].Columns[COMUNA_NOMBRE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="COMUNA_NOMBRE"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[COMUNA_NOMBRE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Inputs[Sort Input].Columns[PROVINCIA_NOMBRE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PROVINCIA_NOMBRE"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[PROVINCIA_NOMBRE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Inputs[Sort Input].Columns[REGION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="REGION"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[REGION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[COMUNAID]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[COMUNAID]"
+                      name="COMUNAID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[COMUNAID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[COMUNA_NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[COMUNA_NOMBRE]"
+                      name="COMUNA_NOMBRE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[COMUNA_NOMBRE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[PROVINCIA_NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[PROVINCIA_NOMBRE]"
+                      name="PROVINCIA_NOMBRE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[PROVINCIA_NOMBRE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[REGION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output].Columns[REGION]"
+                      name="REGION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[REGION]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga_Dim_Comuna\Origen_Comuna"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Origen_Comuna"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        cast(comuna.comuna_id as int) COMUNAID, COMUNA.COMUNA_NOMBRE, PROVINCIA.PROVINCIA_NOMBRE, REGION.REGION
+FROM            COMUNA INNER JOIN
+                         PROVINCIA ON COMUNA.PROVINCIA_ID = PROVINCIA.PROVINCIA_ID INNER JOIN
+                         REGION ON PROVINCIA.REGION_ID = REGION.REGION_ID</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga_Dim_Comuna\Origen_Comuna.Connections[IDbConnection]"
+                  connectionManagerID="{3EF6D189-090D-4858-93EC-56D559017E9D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WMINTNEGOCIO_INTNEGOCIO.SamarImportadora]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[COMUNAID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].ExternalColumns[COMUNAID]"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[COMUNAID]"
+                      name="COMUNAID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[COMUNA_NOMBRE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].ExternalColumns[COMUNA_NOMBRE]"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[COMUNA_NOMBRE]"
+                      name="COMUNA_NOMBRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[PROVINCIA_NOMBRE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].ExternalColumns[PROVINCIA_NOMBRE]"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[PROVINCIA_NOMBRE]"
+                      name="PROVINCIA_NOMBRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[REGION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].ExternalColumns[REGION]"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].Columns[REGION]"
+                      name="REGION"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].ExternalColumns[COMUNAID]"
+                      dataType="i4"
+                      name="COMUNAID" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].ExternalColumns[COMUNA_NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      name="COMUNA_NOMBRE" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].ExternalColumns[PROVINCIA_NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      name="PROVINCIA_NOMBRE" />
+                    <externalMetadataColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output].ExternalColumns[REGION]"
+                      dataType="wstr"
+                      length="255"
+                      name="REGION" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[COMUNAID]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[COMUNAID]"
+                      name="COMUNAID" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[COMUNA_NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[COMUNA_NOMBRE]"
+                      name="COMUNA_NOMBRE" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[PROVINCIA_NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[PROVINCIA_NOMBRE]"
+                      name="PROVINCIA_NOMBRE" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[REGION]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[REGION]"
+                      name="REGION" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga_Dim_Comuna.Paths[ADO NET Source Output]"
+              endId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Inputs[Sort Input]"
+              name="ADO NET Source Output"
+              startId="Package\Carga_Dim_Comuna\Origen_Comuna.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Carga_Dim_Comuna.Paths[ADO NET Source Output1]"
+              endId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Inputs[Sort Input]"
+              name="ADO NET Source Output"
+              startId="Package\Carga_Dim_Comuna\Destino_Comuna.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Carga_Dim_Comuna.Paths[Insertar]"
+              endId="Package\Carga_Dim_Comuna\Dim_Comuna.Inputs[ADO NET Destination Input]"
+              name="Insertar"
+              startId="Package\Carga_Dim_Comuna\Conditional Split.Outputs[Insertar]" />
+            <path
+              refId="Package\Carga_Dim_Comuna.Paths[Merge Join Output]"
+              endId="Package\Carga_Dim_Comuna\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Carga_Dim_Comuna\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Carga_Dim_Comuna.Paths[Sort Output]"
+              endId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Carga_Dim_Comuna\Ord_Origen_Comuna.Outputs[Sort Output]" />
+            <path
+              refId="Package\Carga_Dim_Comuna.Paths[Sort Output1]"
+              endId="Package\Carga_Dim_Comuna\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Carga_Dim_Comuna\Ord_Destino_Comuna.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -24,5 +1148,235 @@
 <Objects
   Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Carga_Dim_Comuna"
+          TopLeft="451,74" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Carga_Dim_Comuna">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Carga_Dim_Comuna\Origen_Comuna"
+          TopLeft="247,126" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Carga_Dim_Comuna\Destino_Comuna"
+          TopLeft="645,127" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Carga_Dim_Comuna\Ord_Origen_Comuna"
+          TopLeft="228,265" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Carga_Dim_Comuna\Ord_Destino_Comuna"
+          TopLeft="628,270" />
+        <EdgeLayout
+          Id="Package\Carga_Dim_Comuna.Paths[ADO NET Source Output]"
+          TopLeft="320.75,168">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,97"
+              Start="0,0"
+              End="0,89.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,89.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga_Dim_Comuna.Paths[ADO NET Source Output1]"
+          TopLeft="721.75,169">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,101"
+              Start="0,0"
+              End="0,93.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,93.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Carga_Dim_Comuna\Merge Join"
+          TopLeft="508,410" />
+        <EdgeLayout
+          Id="Package\Carga_Dim_Comuna.Paths[Sort Output]"
+          TopLeft="317,307">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="235.666666666667,103"
+              Start="0,0"
+              End="235.666666666667,95.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.048632218845" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57.048632218845"
+                    Point2="0,61.048632218845"
+                    Point3="4,61.048632218845" />
+                  <mssgle:LineSegment
+                    End="231.666666666667,61.048632218845" />
+                  <mssgle:CubicBezierSegment
+                    Point1="231.666666666667,61.048632218845"
+                    Point2="235.666666666667,61.048632218845"
+                    Point3="235.666666666667,65.048632218845" />
+                  <mssgle:LineSegment
+                    End="235.666666666667,95.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga_Dim_Comuna.Paths[Sort Output1]"
+          TopLeft="719,312">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-125.666666666667,98"
+              Start="0,0"
+              End="-125.666666666667,90.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.0851063829787" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,54.0851063829787"
+                    Point2="0,58.0851063829787"
+                    Point3="-4,58.0851063829787" />
+                  <mssgle:LineSegment
+                    End="-121.666666666667,58.0851063829787" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-121.666666666667,58.0851063829787"
+                    Point2="-125.666666666667,58.0851063829787"
+                    Point3="-125.666666666667,62.0851063829787" />
+                  <mssgle:LineSegment
+                    End="-125.666666666667,90.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Carga_Dim_Comuna\Conditional Split"
+          TopLeft="498,531" />
+        <EdgeLayout
+          Id="Package\Carga_Dim_Comuna.Paths[Merge Join Output]"
+          TopLeft="574.25,452">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Carga_Dim_Comuna\Dim_Comuna"
+          TopLeft="502,660" />
+        <EdgeLayout
+          Id="Package\Carga_Dim_Comuna.Paths[Insertar]"
+          TopLeft="574.25,573">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,87"
+              Start="0,0"
+              End="0,79.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,79.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-18.16029296875,35.0390625,36.3205859375,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_Dim_Comuna\Origen_Comuna">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_Dim_Comuna\Destino_Comuna">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga_Dim_Comuna\Dim_Comuna">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
