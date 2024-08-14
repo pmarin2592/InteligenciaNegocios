@@ -1,0 +1,89 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>ProyectoG1Cubo</Database>
+    <Server>WMINTNEGOCIO\INTNEGOCIO</Server>
+    <ConnectionString>Data Source=WMINTNEGOCIO\INTNEGOCIO;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>DoNotProcess</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>ROP4354A8wF8DymR2WX5P3ve79I=8/14/2024 12:17:32 AM8/14/2024 12:11:24 AM</TimeStamp>
+        <ID>
+          <String>DW ULATINA</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>tYG3uWjFw3Vcf85a8CBoV32nbm8=8/14/2024 12:13:09 AM8/14/2024 12:13:09 AM</TimeStamp>
+        <ID>
+          <String>DW ULATINA</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>y/ZZOI6GQt1Hz0HuaKncarbh4Ds=8/14/2024 12:14:03 AM8/14/2024 12:13:35 AM</TimeStamp>
+        <ID>
+          <String>DIM FECHA</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>zgMe7nyosaSnSiaPOxtBFJlRsp4=8/14/2024 12:29:56 AM8/14/2024 12:13:35 AM</TimeStamp>
+        <ID>
+          <String>DIM VENTA</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>ohkLB+SLBtjdqd6MIf9ozVN+Oys=8/14/2024 12:14:55 AM8/14/2024 12:13:35 AM</TimeStamp>
+        <ID>
+          <String>DIM SUCURSAL</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>beL3dsRmf8xCJl8dFdAjVQJ3JXw=8/14/2024 12:15:11 AM8/14/2024 12:13:35 AM</TimeStamp>
+        <ID>
+          <String>DIM VENDEDOR</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>ZL3mjfJcTP2HqNU2NagwJRvmBls=8/14/2024 12:15:37 AM8/14/2024 12:13:35 AM</TimeStamp>
+        <ID>
+          <String>DIM CLIENTE</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>hGuKjupd31e2rCq12DTUrZATBko=8/14/2024 12:29:56 AM8/14/2024 12:13:35 AMv0Uj7RxCyhzfPUTwPWDEBexAcxw=8/14/2024 12:13:35 AM8/14/2024 12:13:35 AM</TimeStamp>
+        <ID>
+          <String>DW ULATINA</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>DP6kOrkHqnTLzN+h2gMER3PozTc=8/14/2024 12:10:13 AM8/14/2024 12:10:13 AM</TimeStamp>
+      <ID>
+        <String>ProyectoG1Cubo</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2024-08-14T06:30:06.243333Z</LastDeployed>
+</DeploymentSnapshot>

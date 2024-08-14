@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="loadFecha"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{3C2F19E7-F529-4640-A296-BA43BBFE8D99}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{5807FFE7-9DAA-4E6E-860A-0AB5413E2B81}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1437,7 +1437,7 @@ FROM
         <NodeLayout
           Size="166,42"
           Id="Package\Carga_dim_fechas"
-          TopLeft="304,106" />
+          TopLeft="356,100" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1447,69 +1447,67 @@ FROM
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="149,42"
-          Id="Package\Carga_dim_fechas\Origen_Fechas"
-          TopLeft="218,90" />
+          Size="154,42"
+          Id="Package\Carga_dim_fechas\Full_join_fechas"
+          TopLeft="470,363" />
         <NodeLayout
           Size="153,42"
           Id="Package\Carga_dim_fechas\Destino_Fechas"
           TopLeft="640,94" />
         <NodeLayout
-          Size="172,42"
-          Id="Package\Carga_dim_fechas\Ord_Origen_Fechas"
-          TopLeft="212,213" />
+          Size="149,42"
+          Id="Package\Carga_dim_fechas\Origen_Fechas"
+          TopLeft="218,90" />
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Carga_dim_fechas\Dim_Fechas"
+          TopLeft="493,598" />
         <NodeLayout
           Size="176,42"
           Id="Package\Carga_dim_fechas\Ord_Destino_Fechas"
           TopLeft="624,213" />
-        <EdgeLayout
-          Id="Package\Carga_dim_fechas.Paths[ADO NET Source Output]"
-          TopLeft="295.25,132">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,81"
-              Start="0,0"
-              End="0,73.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,73.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Carga_dim_fechas.Paths[ADO NET Source Output1]"
-          TopLeft="714.25,136">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,77"
-              Start="0,0"
-              End="0,69.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,69.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
-          Size="154,42"
-          Id="Package\Carga_dim_fechas\Full_join_fechas"
-          TopLeft="470,363" />
+          Size="172,42"
+          Id="Package\Carga_dim_fechas\Ord_Origen_Fechas"
+          TopLeft="212,213" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Carga_dim_fechas\Conditional Split"
+          TopLeft="482,485" />
+        <EdgeLayout
+          Id="Package\Carga_dim_fechas.Paths[Sort Output1]"
+          TopLeft="712,255">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-140.666666666667,108"
+              Start="0,0"
+              End="-140.666666666667,100.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.133676092545" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60.133676092545"
+                    Point2="0,64.133676092545"
+                    Point3="-4,64.133676092545" />
+                  <mssgle:LineSegment
+                    End="-136.666666666667,64.133676092545" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-136.666666666667,64.133676092545"
+                    Point2="-140.666666666667,64.133676092545"
+                    Point3="-140.666666666667,68.133676092545" />
+                  <mssgle:LineSegment
+                    End="-140.666666666667,100.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Carga_dim_fechas.Paths[Sort Output]"
           TopLeft="298,255">
@@ -1545,44 +1543,6 @@ FROM
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Carga_dim_fechas.Paths[Sort Output1]"
-          TopLeft="712,255">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-140.666666666667,108"
-              Start="0,0"
-              End="-140.666666666667,100.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,60.133676092545" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,60.133676092545"
-                    Point2="0,64.133676092545"
-                    Point3="-4,64.133676092545" />
-                  <mssgle:LineSegment
-                    End="-136.666666666667,64.133676092545" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-136.666666666667,64.133676092545"
-                    Point2="-140.666666666667,64.133676092545"
-                    Point3="-140.666666666667,68.133676092545" />
-                  <mssgle:LineSegment
-                    End="-140.666666666667,100.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Carga_dim_fechas\Conditional Split"
-          TopLeft="482,485" />
-        <EdgeLayout
           Id="Package\Carga_dim_fechas.Paths[Merge Join Output]"
           TopLeft="547,405">
           <EdgeLayout.Curve>
@@ -1616,10 +1576,6 @@ FROM
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="136,42"
-          Id="Package\Carga_dim_fechas\Dim_Fechas"
-          TopLeft="493,598" />
         <EdgeLayout
           Id="Package\Carga_dim_fechas.Paths[Insertar]"
           TopLeft="560.25,527">
@@ -1644,11 +1600,55 @@ FROM
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga_dim_fechas.Paths[ADO NET Source Output1]"
+          TopLeft="714.25,136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77"
+              Start="0,0"
+              End="0,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga_dim_fechas.Paths[ADO NET Source Output]"
+          TopLeft="295.25,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81"
+              Start="0,0"
+              End="0,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Carga_dim_fechas\Origen_Fechas">
+    design-time-name="Package\Carga_dim_fechas\Destino_Fechas">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1656,7 +1656,7 @@ FROM
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Carga_dim_fechas\Destino_Fechas">
+    design-time-name="Package\Carga_dim_fechas\Origen_Fechas">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
